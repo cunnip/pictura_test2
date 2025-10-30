@@ -18,7 +18,7 @@ const images = [
     {picPath: 'images/hellicopter.jpg', picOrientation: 'Landscape', picCategory: 'Vehicles', picOwnersAccount: 'user_C', picStarRating: 3},
     {picPath: 'images/motorbike.jpg', picOrientation: 'Landscape', picCategory: 'Vehicles', picOwnersAccount: 'user_A', picStarRating: 2},
     {picPath: 'images/flowerssmall.jpg', picOrientation: 'Landscape', picCategory: 'Floral', picOwnersAccount: 'user_B', picStarRating: 5},
-    {picPath: 'images/clintonsparents_small.jpg', picOrientation: 'Landscape', picCategory: 'UrbanLandscape', picOwnersAccount: 'user_D', picStarRating: 5},
+    {picPath: 'images/clintonsparentssmall.jpg', picOrientation: 'Landscape', picCategory: 'UrbanLandscape', picOwnersAccount: 'user_D', picStarRating: 5},
     {picPath: 'images/aucklandcity.jpg', picOrientation: 'Landscape', picCategory: 'Cityscape', picOwnersAccount: 'user_C', picStarRating: 4},
     {picPath: 'images/kawakawabayportrait.jpg', picOrientation: 'Portrait', picCategory: 'Landscape', picOwnersAccount: 'user_A', picStarRating: 5},
     {picPath: 'images/whiteducksmall.jpg', picOrientation: 'Landscape', picCategory: 'Wildlife', picOwnersAccount: 'user_D', picStarRating: 3},
@@ -168,3 +168,4 @@ function preventLinkClick(event)
             }
         }
     }
+
