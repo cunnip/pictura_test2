@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Viewport Test</title>
+</head>
+<body>
+    <h1>Check your browser's Developer Console (F12)</h1>
+    <script>
+        // Get viewport dimensions
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        // Display the results
+        console.log("Viewport Width (including scrollbar): " + width + "px");
+        console.log("Viewport Height (including scrollbar): " + height + "px");
+
+        // You can also display it on the page for a clearer visual test
+        const p = document.createElement('p');
+        p.textContent = `Your viewport is currently: ${width}px wide by ${height}px high (including scrollbar).`;
+        document.body.appendChild(p);
+    </script>
+</body>
+</html>

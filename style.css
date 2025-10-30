@@ -1,0 +1,1497 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Setup the default html */
+html, body {
+    height: 100%; 
+    min-height: 80vh; 
+    overflow-y: hidden;
+    font-family: Tahoma, sans-serif;   
+    overflow:hidden;
+    touch-action: manipulation;
+}
+
+/* Style the navigation bar */
+nav {
+    font-weight: bolder;
+    font-size: small;
+    display: flex;
+    text-align: center;
+    text-wrap: wrap;
+    align-items: center; 
+    background-color: #1ecbe1; 
+    max-width: 100vw;
+    min-height: 10vh;
+    max-height: 10vh;
+}
+
+.isLocked {
+    cursor: not-allowed;
+}
+
+/*Define style for the sandwich icon*/
+.sandwichIcon {
+    margin-left: 10px;
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+.welcomeText {
+    text-align: center; 
+    margin: 0; 
+    flex-grow: 1; 
+}
+
+/*Define styles for the curtain menu layer*/
+.overlay {
+    height: calc(100% - 25%);
+    width: 50%;
+    display: none; /*block: show; none: hide*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 3; /*Make this layer sit on top of other layer*/
+}
+
+.overlay-content {
+    position: relative;
+    top: 8%;
+    text-align: center;
+    margin-top: 0;
+}
+
+.overlay a {
+    padding: 2px;
+    text-decoration: none; /*remove all default styles*/
+    font-size: .8rem; /*1em=16px => 2em = 32px*/
+    color: white;
+    display: block;
+}
+
+/*Add hover effec to the hyperlinks */
+.overlay a:hover, .overlay a:focus {
+    color: green;
+}
+
+.close-icon {
+    position: absolute;
+    top: 0rem;
+    right: .2rem;
+    font-size: 2.0rem;
+    color: white;
+}
+
+.close-icon:hover {
+    color: red; 
+    cursor: pointer; /* Makes it clear the element is clickable */
+}
+
+.mainContainer {
+    align-content: center;
+    border-width: 2px;
+    border-style: solid;
+    padding: 0%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh; 
+    max-height: 100vh;
+    position: relative; 
+}
+
+.mainContent {
+    display: block; 
+    border-style: groove;
+    border-width: 0px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    width: 99vw;
+    height: 66vh;
+    border-color: black;
+    position: relative;
+    padding: .1%;
+    overflow: hidden;
+}
+
+.aboutUs .mainContent{
+    font-size: small;
+}
+
+.gallery-grid {
+    border-style: double;
+    display: grid;
+    --columns:1;
+    --rows:2;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: repeat(var(--rows), 1fr);
+    text-align: center;
+    padding: 0%;
+    position: relative;
+    height: auto;
+    background-color: white; 
+    align-items: center; 
+    max-width: 100vw;
+    contain: content;   
+    overflow: hidden;
+    width: fit-content;
+    object-fit: contain;
+    gap: 0; /* Adds space between the grid items */
+    
+    /* Consolidated repetitive display: grid */
+    .photo-item1, .photo-item2,.photo-item3, .photo-item4,.photo-item5, .photo-item6,
+    .photo-item7, .photo-item8,.photo-item9, .photo-item10,.photo-item11, .photo-item12 {
+        display: grid; 
+    }    
+    
+    .photo-item13 {
+        display: none !important;  /* This is a hidden field to pre-load the next photo. */
+    }
+
+    .photo-item1 img, .photo-item2 img, .photo-item3 img, .photo-item4 img, .photo-item5 img, .photo-item6 img, .photo-item7 img, .photo-item8 img, .photo-item9 img, .photo-item10 img, .photo-item11 img, .photo-item12 img {
+        width: 100%;  /* Image will fill 100% of the item's width */
+        height: auto; /* Image will fill 100% of the item's height */
+        transform: scale(1.01); /* Make sure if any picture is slightly outsized it fills the box */
+        overflow: hidden;
+    }
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;  
+}
+
+.gallery-grid2 {
+    /*border-style: double;*/
+    width: 100%;
+    display: grid;
+    --columns:1;
+    --rows:1;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: repeat(var(--rows), 1fr);
+    text-align: center;
+    padding: 0%;
+    /*height: auto;*/
+    overflow: hidden;
+    object-fit: cover;
+    
+    .photoitem14 img{
+        width: 85%;  /* Image will fill 100% of the item's width */
+        height: auto; /* Image will fill 100% of the item's height */
+        overflow: hidden;
+    }
+}
+
+/* Style the sidebar */
+.sidebar {
+    position: absolute; /* This takes the sidebar out of the normal flow */
+    bottom: 20vh; /* 0 Would stick it to the bottom of the parent container */
+    left: 0%;
+    width: 100vw;
+    background-color: black; /* Add a color so you can see it */
+    padding: 0%; /* Removes default padding */
+    z-index: 2; /* Ensures the sidebar is above the main content */
+    height: 13vh; /* Sets a fixed height for the sidebar */
+    display: flex;
+    align-items: center; /* Vertically centers the grid within the sidebar */
+    justify-content: center; /* Horizontally centers the grid within the sidebar */
+
+    .grid-container {
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(4, 1fr); /* Creates 4 columns of equal width */
+        grid-template-rows: repeat(2, 1fr); /* Creates 2 columns of equal width */
+        background-color: black; /* Add a color so you can see it */
+        align-items: center; /* Centers the grid vertically */  
+    }
+
+    /* Styles for all boxes */
+    .login-name-box, .password-box, .login-box, .join-box, .about-box, .open-gallery, .upload-box, .home-box, .loginText, .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .pic13state {
+        display:flex;
+        font-size: 80%; /*1em=16px => 2em = 32px*/
+        line-height: 140%;
+        font-weight: bolder;
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 5px; 
+        align-items: center;
+        text-wrap: wrap;
+        justify-content: center;
+        width: 90%;
+        max-width: 90%;
+        height: 99%;
+        min-height: 99%;
+        max-height: 99%;
+        background-color: #e1341e;
+        color: black;
+        flex-wrap: wrap;
+        overflow: hidden;
+        cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
+    }
+
+    .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .pic13state {
+        background-color: #edf108;
+        color: black;
+        flex-wrap: wrap;
+        overflow: hidden;
+        cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
+    }
+
+    .space-Filler, .space-Filler2, .space-Filler3, .space-Filler4 {
+        background-color: #edf108;
+        color: #edf108;
+        flex-wrap: wrap;
+        overflow: hidden;
+        cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
+        max-width: none;
+        min-width: 90%;
+        max-height: 90%;
+        min-height: 90%;
+        cursor: none;
+        border-radius: 5px; 
+    }
+
+   .login-name-box, .password-box
+   {
+        width: 100%;
+   }
+
+    .loginText {
+        font-size: 70%; /*1em=16px => 2em = 32px*/
+        color: white;
+        text-align: center;
+        background-color: black;
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    /* Consolidated login/password box specific styles */
+    .login-name-box, .password-box {
+        font-size: 70%; /*1em=16px => 2em = 32px*/
+        text-align: left;
+        background-color: white;
+    }
+
+    .login-name-box {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    .password-box {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    /* Specific styles for the colored boxes */
+    .login-box {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    .open-gallery {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    /* Consolidated about/home box area as they share the same area in this block */
+
+    .about-box, .home-box {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    /* This is in here to move the home box down one grid for the joinUs page!!! */
+    .joinUs .home-box 
+    {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+    
+    .join-box {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .upload-box {
+        background-color: white;
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .space-Filler {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    .space-Filler2 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    .space-Filler3 {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    .space-Filler4 {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    /*********************************************************************************/
+
+    /* Make the entire box clickable */
+    /* Styles for all boxes within the footer*/
+    .box a {
+        display: block;
+        text-decoration: none;
+        color: black;
+    }
+}
+
+@media screen and (orientation: portrait) and (max-width: 767px) {
+
+    .aboutUs .mainContent{
+        font-size: 75%;
+    }
+    .gallery-page .sidebar, .index-page .sidebar {
+
+    position: absolute;
+    bottom: 20vh;
+    height: 15vh; /* Sets a fixed height for the sidebar */
+
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr); /* Creates 4 columns of equal width */
+        grid-template-rows: repeat(3, 1fr); /* Creates 4 rows of equal height */
+        grid-c
+    }
+
+    .loginText {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .login-name-box, .password-box {
+        font-size: 70%; /*1em=16px => 2em = 32px*/
+        text-align: left;
+        background-color: white;
+    }
+
+    .login-name-box {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .password-box {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    /* Specific styles for the colored boxes */
+    .login-box {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2; /* HERE */
+        grid-row-end: 3;
+    }
+
+    .open-gallery {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    /* Consolidated about/home box area as they share the same area in this block */
+
+    .about-box {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .home-box {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    /* This is in here to move the home box down one grid for the joinUs page!!! */
+    .joinUs .home-box 
+    {
+        grid-column-start: 3 !important;
+        grid-column-end: 4 !important;
+        grid-row-start: 3 !important;
+        grid-row-end: 4 !important;
+    }
+    
+    .join-box {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    .upload-box {
+        background-color: white;
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    .my-Photos {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    .all-Photos {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    .category-Photos {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    .rated-Photos {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+}
+
+}
+
+.footer-bar {
+    position: absolute; /* This takes the sidebar out of the normal flow */
+    bottom: 10vh; /* 0 Would stick it to the bottom of the parent container */
+    left: 0%;
+    width: 100%;
+    background-color: #5c6a7b; /* Add a color so you can see it */
+    padding: 0%; /* Removes default padding */
+    z-index: 2; /* Ensures the sidebar is above the main content */
+    height: 10vh; /* Sets a fixed height for the sidebar */
+    display: flex;
+    align-items: center; /* Vertically centers the grid within the sidebar */
+    justify-content: center; /* Horizontally centers the grid within the sidebar */
+    color: white;
+    font-size: larger;
+    text-align: center;
+    overflow: hidden;
+}
+
+/*-------------------------RESPONSIVE DESIGN-------------------------*/
+/* Define styles for different screen sizes */
+/********************* MEDIUM SCREENS ************************/
+
+/* Mobile-specific styles */
+@media screen and (min-width: 360px) and (min-height:600px) and (max-height:800px){
+    .aboutUs .mainContent{
+        font-size: 75%;
+    }
+}
+
+
+/* ************************* HERE HERE HERE ****************************************/
+/*@media screen and (((min-width: 360px) and (max-width: 670px) and (max-height: 767px))){*/
+@media screen and (orientation: portrait) and (max-width: 767px) and (max-height: 700px){
+    .mainContent {
+        min-height: 60vh; 
+        max-height: 60vh;
+    }
+    .gallery-page .sidebar , .index-page .sidebar {
+
+        position: absolute;
+        bottom: 20vh;
+        height: 20vh;
+    }    
+    
+    .gallery-grid {
+        --columns:2;
+        --rows:4;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+@media screen and (width: 344px) and (height:882px) {
+    .mainContent {
+        min-height: 67vh; 
+        max-height: 67vh;
+    }
+
+    .gallery-grid {
+        --columns:2;
+        --rows:6;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+@media screen and (min-width: 360px) and (min-height: 740px) and (max-width: 767px)  {
+
+
+    .aboutUs .mainContent{
+        font-size: 91%;
+    }
+
+    .gallery-page.sidebar , .index-page .sidebar {
+
+        bottom: 20vh;
+        height: 16vh; 
+    }       
+
+    .gallery-grid {
+        --columns:2;
+        --rows:4;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+
+@media screen and (min-width: 390px) and (min-height: 840px) and (max-width: 767px)  {
+    .mainContent {
+        min-height: 67vh; 
+        max-height: 67vh;
+    }
+
+    .aboutUs .mainContent{
+        font-size: 91%;
+    }
+
+    .gallery-grid {
+        --columns:2;
+        --rows:5;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+
+@media screen and (max-width: 767px) and (min-height: 840px)  {
+
+    .sidebar {
+
+        bottom: 20vh;
+        height: 11vh; 
+    }    
+    
+    .gallery-page .sidebar, .index-page .sidebar  {
+
+        bottom: 20vh;
+        height: 13vh; 
+    }    
+}
+
+
+@media screen and (min-width: 414px) and (max-height: 859px)  {
+
+
+    /* Tablet-specific styles */
+    .mainContent {
+        font-size: 85%;
+    }
+    .gallery-grid {
+        --columns:2;
+        --rows:3;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+@media screen and (min-width: 540px) and (min-height: 720px) {
+    /* Tablet-specific styles */
+    .mainContent {
+        height: 64vh;
+    }
+    .gallery-grid {
+        --columns:3;
+        --rows:4;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+/* Move to Side Bar Styles For Medium and Bigger Screens*/
+@media screen and (min-width: 768px) {
+    .overlay {
+        height: calc(100vh - 10vh);
+        width: 50%;
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 3; 
+    }
+
+    .mainContainer {
+        padding: 0%;
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        min-height: 100vh; 
+        max-height: 100vh;
+        position: relative; 
+    }
+
+    .mainContent {
+        font-size: medium;
+        height: 80vh;
+        width: 85vw;
+        position: relative;
+    }
+
+    .gallery-grid {
+        --columns:2;
+        --rows:5;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+
+    .page-single-view .mainContent {
+        padding: 2%;
+        display: flex;
+        width: 90vw;
+        height: 88vh;
+        overflow: hidden;
+    }
+
+    .gallery-grid2 { 
+        /*transform: rotate(0deg) scale(1);*/
+        /*display: grid;*/
+        padding: 1%;
+        /*width:50vw;*/
+    }
+
+    .sidebar {
+        position: static; /* This takes the sidebar out of the normal flow */
+        bottom: auto; /* 0 Would stick it to the bottom of the parent container */
+        width: 15vw;
+        height: 100vh; /* Sets a fixed height for the sidebar */
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr; 
+            grid-template-rows: repeat(16, 1fr); 
+            gap: 0%; /* Adds space between the grid items */
+            height: 95vh; /* Sets a fixed height for the grid container */
+        }
+
+        .loginText {
+            font-size: 70%; /*1em=16px => 2em = 32px*/
+            color: white;
+            text-align: center;
+            background-color: black;
+            grid-column-start: 1;
+            grid-column-end: 2; /* Simplified column span to 1 in this context */
+            grid-row-start: 4;
+            grid-row-end: 5;
+        }
+
+        /* Consolidated login/password box specific styles */
+        .login-name-box, .password-box {
+            font-size: 70%; /*1em=16px => 2em = 32px*/
+            text-align: left;
+            background-color: white;
+            grid-column-start: 1;
+            grid-column-end: 2; /* Simplified column span to 1 in this context */
+        }
+        
+        .login-name-box {
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        .password-box {
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
+    /* Styles for all boxes */
+        .login-name-box, .password-box, .login-box, .join-box, .about-box, .open-gallery, .upload-box, .home-box, .loginText, .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .pic13state {
+            font-size: 100%; /*1em=16px => 2em = 32px*/
+            line-height: 100%;
+            font-weight: bolder;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 5px; 
+            align-items: center;
+            text-wrap: wrap;
+            height: 90%;
+            width: 90%;
+            max-width: 90%;
+            min-height: 70%;
+            max-height: 70%;
+            background-color: #e1341e;
+            color: black;
+            flex-wrap: wrap;
+            overflow: hidden;
+            cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
+        }
+        .login-name-box, .password-box {
+            background-color: white;
+             width: 95%;
+        }
+
+        .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .pic13state {
+            background-color: #edf108;
+            color: black;
+            flex-wrap: wrap;
+            overflow: hidden;
+            cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
+        }
+
+
+        /* Specific styles for the colored boxes */
+        .home-box, .about-box, .join-box, .upload-box, .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .pic13state, .login-box, .open-gallery {
+            font-size: 80%;
+            min-width: 60px;
+            text-decoration: none;
+            align-content: center;
+        }   
+        .login-box {
+            grid-column-start: 1;
+            grid-column-end: 2; /* Simplified column span to 1 in this context */
+            grid-row-start: 3;
+            grid-row-end: 4;
+            height: 90%;
+        }
+
+        .open-gallery {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 5;
+            grid-row-end: 6;
+        }
+
+        .about-box {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 7;
+            grid-row-end: 8;
+        }
+
+        .join-box {
+            grid-column-start: 1 !important;
+            grid-column-end: 2 !important;
+            grid-row-start: 6 !important;
+            grid-row-end: 7 !important;
+        }
+
+        .upload-box {
+            background-color: white;
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 8;
+            grid-row-end: 9;
+        }
+
+        .home-box {
+            grid-column-start: 1 !important;
+            grid-column-end: 2 !important;
+            grid-row-start: 4 !important;
+            grid-row-end: 5 !important;
+        }
+
+        .my-Photos {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 9;
+            grid-row-end: 10;
+        }
+        .all-Photos {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 10;
+            grid-row-end: 11;
+        }
+        .category-Photos {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 11;
+            grid-row-end: 12;
+        }
+        .rated-Photos {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 12;
+            grid-row-end: 13;
+        }
+        .space-Filler, .space-Filler2, .space-Filler3, .space-Filler4 {
+            display: none;
+        }
+
+    }
+
+    .footer-bar {
+        height: 10vh; /* Sets a fixed height for the sidebar */
+        width: 100vw;
+    }    
+
+    .page-single-view nav {
+        font-size: large;
+        min-height: 5vh;
+    }
+
+    .page-single-view .mainContent {
+        padding: 2%;
+        display: flex;
+        /*width: 100%;
+        height: 100%;*/
+        overflow: hidden;
+    }
+
+    .page-single-view .footer-bar {
+        bottom: 4vh; 
+        height: 7vh; /* Sets a fixed height for the sidebar */
+    }    
+}
+
+/********************** BIG SCREENS *************************/
+/* Desktop-specific styles */
+@media screen and (min-width: 1000px) and (min-height: 650px) {
+    .mainContent {
+        width: 85vw;
+    }
+    nav {
+        font-size: large;
+        min-height: 10vh;
+        max-height: 10vh;
+    }
+    .gallery-grid {
+        --columns:3;
+        --rows:3;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+    .sidebar {
+        width: 15vw;
+    }
+}
+
+@media screen and (min-width: 1024px) and (min-height: 769px) {
+    nav {
+        font-size: xx-large;
+        min-height: 10vh;
+        max-height: 10vh;
+    }
+    .gallery-grid {
+        --columns:3;
+        --rows:4;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+    .sidebar {
+        position: static; 
+        bottom: auto; 
+        left: auto;
+        width: 20vw;
+        height: 100vh; 
+    }
+    .footer-bar {
+        bottom: 10vh; 
+        height: 10vh; 
+    } 
+    .page-single-view nav {
+        font-size: large;
+        min-height: 5vh;
+    }
+    .page-single-view .mainContent {
+        padding: 2%;
+        display: flex;
+        /*width: 100%;
+        height: 100%;*/
+        overflow: hidden;
+    }
+    .page-single-view .footer-bar {
+        bottom: 4vh; 
+        height: 7vh; /* Sets a fixed height for the sidebar */
+    }
+}
+
+@media screen and (min-width: 1024px) and (min-height: 920px) {
+    nav {
+        font-size: xx-large;
+        min-height: 10vh;
+        max-height: 10vh;
+    }
+    .gallery-grid {
+        --columns:3;
+        --rows:4;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+    .sidebar {
+        position: static; /* This takes the sidebar out of the normal flow */
+        bottom: auto; /* 0 Would stick it to the bottom of the parent container */
+        left: auto;
+        width: 20vw;
+        height: 100vh; /* Sets a fixed height for the sidebar */
+    }
+    .footer-bar {
+        bottom: 10vh; /* 0 Would stick it to the bottom of the parent container */
+        height: 10vh; /* Sets a fixed height for the sidebar */
+    }    
+}
+
+@media screen and (min-width: 1024px) and (min-height: 1366px) {
+    nav {
+        font-size: xx-large;
+        min-height: 10vh;
+        max-height: 10vh;
+    }
+    .gallery-grid {
+        --columns:2;
+        --rows:4;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+    .gallery-grid2 { 
+        width:78vw;
+    }
+    .sidebar {
+        position: static; /* This takes the sidebar out of the normal flow */
+        bottom: auto; /* 0 Would stick it to the bottom of the parent container */
+        left: auto;
+        width: 20vw;
+        height: 100vh; /* Sets a fixed height for the sidebar */
+    }
+    .footer-bar {
+        bottom: 10vh; /* 0 Would stick it to the bottom of the parent container */
+        height: 10vh; /* Sets a fixed height for the sidebar */
+    }    
+}
+
+@media screen and (((min-width: 1200px) and (min-height:750px))) {
+    .mainContent {
+        width: 90vw;
+    }
+    .gallery-grid {
+        --columns:3;
+        --rows:2;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+    .sidebar {
+        width: 10vw;
+    }
+}
+
+@media screen and (((min-width: 1200px) and (min-height:1024px)) or (aspect-ratio: 5/4)){
+    .gallery-grid {
+        --columns:3;
+        --rows:3;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+@media screen and (((min-width: 1400px) and (min-height:1024px)) or (aspect-ratio: 16/10)) {
+    .gallery-grid {
+        --columns:3;
+        --rows:4;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+ 
+    .page-single-view nav {
+        font-size: large;
+        min-height: 5vh;
+    }
+    .page-single-view .mainContent {
+        align-items: center;
+        padding: 2%;
+        display: flex;
+        width: 100%;
+        height: 87vh;
+        overflow: hidden;
+    }
+    .page-single-view .footer-bar {
+        bottom: 5vh; 
+        height: 6vh; /* Sets a fixed height for the sidebar */
+    }
+}
+
+/* This covers 1680 x 1050 through to most wide screens. */
+@media screen and (min-aspect-ratio: 15/9) {
+    .container {
+        width: 70%;
+        max-width: 1200px;
+    }
+    nav {
+        font-size: large;
+        min-height: 10vh;
+        max-height: 10vh;
+    }
+    .gallery-grid {
+        --columns:3; /* Changed to this for my laptop!!! */
+        --rows:4;
+        overflow-y: auto !important;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+        max-height: 79vh
+    }
+    .page-single-view .mainContent {
+        /*all:initial;*/
+        box-sizing: border-box;
+        align-content: center;
+        justify-items: center;
+        justify-self: center;
+        width: 90vw ;
+        max-height: 87vh;
+        /*
+        padding: 2% ;
+        display: flex;
+        height: 88vh;
+        overflow: hidden;
+        */
+    }
+    .gallery-grid2 { 
+        /*all:initial;*/
+        box-sizing: border-box;
+        display: grid;
+        text-align: center;
+        width:70vw;
+        /*transform: rotate(0deg) scale(1);*/
+        /*display: grid;
+        padding: 1%;
+        */
+    }
+}
+
+@media screen and (width: 1024px) and (min-height:480px) and (max-height:650px){
+    .mainContent {
+        min-height: 78vh; 
+        max-height: 78h;
+        width: 90vw;
+    }
+    
+    .sidebar {
+        width: 10vw;
+	}
+
+    .gallery-grid {
+        --columns:3;
+        --rows:3;
+        overflow-y: auto !important;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+@media screen and (width: 1024px) and (min-height:730px) and (max-height:767px){
+    .gallery-grid {
+        --columns:3;
+        --rows:3;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+@media screen and (width: 1366px) and (min-height:470px) and (max-height:625px){
+    .gallery-grid {
+        --columns:4;
+        --rows:2;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+@media screen and (aspect-ratio: 2/2) {
+    .mainContent {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+    }
+    nav {
+        font-size: xx-large;
+        min-height: 10vh;
+        max-height: 10vh;
+    }
+    .gallery-grid {
+        --columns:2;
+        --rows:2;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+@media screen and (aspect-ratio: 4/3) {
+    .mainContent {
+        width: 85vw;
+        /*height: 100vh;*/
+        position: relative;
+    }
+    nav {
+        font-size: xx-large;
+        min-height: 10vh;
+        max-height: 10vh;
+    }
+    .gallery-grid {
+        --columns:3;
+        --rows:3;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+    .sidebar {
+        width: 15%;
+        height: 100vh;
+    }
+    .footer-bar {
+        bottom: 10vh; 
+        height: 10vh; 
+    }    
+}
+
+@media screen and (min-width:768px){
+    nav {
+        font-weight: bolder;
+        font-size: large;
+    }
+}
+
+@media screen and (width: 853px) and (height:1280px) {
+    .gallery-grid {
+        --columns:2;
+        --rows:5;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+    }
+}
+
+/* 1. Box Sizing for elements on the Single Picture View - All Orientations.
+/* Needed to override alot of settings for full control*/
+.page-single-view .gallery-grid2 { 
+    height: 100% !important; 
+    width: 100% !important; 
+    overflow: hidden !important;
+    position: absolute !important;
+    top: 0; 
+    left: 0;
+    display: grid !important; 
+    place-items: center !important;
+}
+
+
+.page-single-view .photoitem14 {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%) !important;
+    display: block !important;
+    padding: 2px;
+}
+
+@media screen and (orientation: portrait) and (max-width: 767px) {
+    .page-single-view .photoitem14 {
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute !important;
+        top: 50% ;
+        left: 50% ;
+        transform: translate(-50%, -50%) !important;
+        display: block !important;
+        padding: 2px;
+    }
+}
+@media screen and (orientation: portrait) and (min-width: 768px) {
+    .page-single-view .photoitem14 {
+        width: 104% !important;
+        height: 100% !important;
+        position: absolute !important;
+        top: 50% ;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+        display: block !important;
+        padding: 2px;
+    }
+}
+
+.page-single-view .photoitem14 img {
+    object-fit: contain !important; 
+    display: block !important; 
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* 1. Box Sizing for elements on the Single Picture View */
+/* Needed to override alot of settings for full control*/
+@media screen and (orientation: landscape) {
+    .page-single-view html, .page-single-view body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden !important; 
+        box-sizing: border-box !important;
+        min-height: 100vh !important;
+        height: 100% !important; 
+    }
+
+    * .page-single-view html {
+        box-sizing: border-box !important;
+    }
+
+    .page-single-view nav {
+        font-size: large;
+        min-height: 5vh;
+        position: fixed !important; 
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important; 
+        z-index: 10 !important; 
+        color: black !important;
+        display: flex !important;
+        align-items: center !important; 
+        padding-left: 10px !important; 
+    }
+
+    .page-single-view .footer-bar {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        min-height: 9vh !important; 
+        height: auto !important; 
+        z-index: 10 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: black !important;
+        padding: 1vh 0 !important; 
+    }
+
+    .page-single-view .sidebar {
+        position: fixed !important; 
+        top: 5vh !important; 
+        right: 0 !important;
+        width: 150px !important; 
+        left: calc(100vw - 150px) !important; 
+        height: calc(100vh - 5vh - 9vh) !important; 
+        max-height: calc(100vh - 5vh - 9vh) !important;
+        z-index: 9 !important; 
+        background-color: black !important; 
+        overflow-y: hidden !important; 
+        display: grid !important;
+        grid-template-rows: repeat(auto-fill, minmax(min-content, auto)) !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    .page-single-view .mainContainer {
+        display: grid !important;
+        grid-template-columns: 1fr !important; 
+        grid-template-rows: 1fr auto !important;
+        width: 100% !important;
+        min-height: 100vh !important;
+        padding-top: 5vh !important;
+        padding-bottom: 9vh !important; 
+        padding-right: 150px !important; 
+        overflow: hidden !important; 
+    }
+
+    .page-single-view .mainContent {
+        grid-column: 1 / 2 !important;
+        grid-row: 1 / 2 !important; 
+        min-height: 100% !important; 
+        width: 100% !important;
+        position: relative !important;
+    }
+}
+
+.map {
+
+    height: 20%;
+    width: 80%;
+
+}
+
+.findUs {
+    text-decoration: underline;
+    text-underline-position: below;
+
+}
+
+.allowScrollBar {
+    /*overflow: visible !important; */
+    overflow-y: auto !important;
+    /*max-height: 900px !important;*/
+}
+
+.loginText
+{
+    display: grid;
+}
+
+/* 5. Resizes the boxes on non-index pages */
+/*
+.aboutUs .open-gallery, .gallery-page .open-gallery, .page-single-view .open-gallery
+{
+    width: 99px;
+}
+
+.aboutUs .home-box, .gallery-page .home-box, .page-single-view .home-box
+{
+    width: 99px;
+}
+
+.aboutUs .join-box, .gallery-page .join-box, .page-single-view .join-box
+{
+    width: 99px;
+}
+*/
+/* 6. Hides the login boxes on non-index pages */
+
+/*
+.page-single-view .home-box
+{
+    display: none;
+}
+
+.hiddenByDefault, .joinUs .loginText, .aboutUs .loginText, .gallery-page .loginText, .page-single-view .loginText
+{
+    display: grid;
+}
+
+.hiddenByDefault, .joinUs .login-name-box,.aboutUs .login-name-box, .gallery-page .login-name-box, .page-single-view .login-name-box
+{
+    display: none;
+}
+
+.hiddenByDefault, .joinUs .password-box, .aboutUs .password-box, .gallery-page .password-box, .page-single-view .password-box
+{
+    display: none;
+}
+
+.hiddenByDefault, .joinUs .login-box, .aboutUs .login-box, .gallery-page .login-box, .page-single-view .login-box
+{
+    display: none;
+}
+
+.hiddenByDefault, .joinUs .join-box, .aboutUs .join-box, .gallery-page .join-box, .page-single-view .join-box
+{
+    display: none;
+}
+
+.hiddenByDefault, .joinUs .upload-box,.aboutUs .upload-box, .gallery-page .upload-box .page-single-view .upload-box
+{
+    display: none;
+}
+
+.hiddenByDefault, .joinUs .open-gallery, .aboutUs .open-gallery, .gallery-page .open-gallery .page-single-view .open-gallery
+{
+    display: none;
+}
+*/
+
+.disabled-link {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none; /* Crucial to prevent the link from navigating */
+    user-select: none; 
+}
+
+.half-disabled-link {
+    user-select: none; 
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.backGroundColourMenu {
+    font-size: small;  
+    font-family: Tahoma, sans-serif;   
+}
+
+
+/*
+    CSS TO HIDE GOOGLE TRANSLATE BANNER BUT KEEP LANGUAGE SELECTOR
+*/
+
+/* 1. Hides the main google floating banner */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+/* 2. Resets the page's top margin */
+body {
+    top: 0px !important;
+}
+
+/* 3. Hides the "Powered by Google" logo */
+.goog-logo-link {
+    display: none !important;
+}
+
+/* 4. Hides extra text but keeps the dropdown */
+.goog-te-gadget span:not(.goog-te-text-icon) {
+    display: none !important;
+}
+
+/* 5. KEEP the language dropdown visible at all times */
+.goog-te-combo,
+
+#google_translate_element, .goog-te-gadget 
+{
+    display: block !important;
+    visibility: visible !important;
+    margin-right: 8px !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+    display: inline-block !important;
+}
+
+/* Hide the feedback bubble specifically */
+div#goog-gt-tt,
+div.goog-te-balloon-frame {
+    display: none !important;
+}

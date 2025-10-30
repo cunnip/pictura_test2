@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="aboutUs">
+
+    <!--Navigation Section-->
+<!--Add Sandwich Icon-->                            
+    <nav>
+        <a href="#" class="sandwichIcon" onclick="openNav()" tabindex="1">&#9776;</a>
+        <p class="welcomeText">Welcome to PICTURA an extravaganza of photos</p>
+        <div class = "translate">
+            <div class="allowScrollBar" id="google_translate_element" style="padding: 5px;" tabindex="-1"></div>
+        </div>
+    </nav>   
+
+    <!--The curtain dropdown menu-->
+    <div id="myNav" class="overlay">
+        <a class="close-icon" onclick="closeNav()" tabindex="2"> &times; </a>
+        <div class="overlay-content">
+            <a href="index.html" tabindex="2">HOME</a>
+        </div>
+    </div>
+
+    <div class="mainContainer ">
+        <main class="mainContent allowScrollBar" id="customize-div">
+            <div class="noSound backGroundColourMenu">
+                <label for="colorOption">Background&nbsp;color: </label>
+                <select class="backGroundColourMenu" id="colorOption" onchange="changebgColor()">
+                <option value="red">RED</option>
+                <option value="white" selected>WHITE</option>
+                <option value="green">GREEN</option>
+                <option value="yellow">YELLOW</option>
+                <option value="ivory">IVORY</option>
+                <option value="pink">PINK</option>
+                <option value="purple">PURPLE</option>
+                <option value="black">BLACK</option>
+                </select>
+                <br>
+                <label class="backGroundColourMenu" for="sizeOption">Font&nbsp;size: </label>
+                <select class="backGroundColourMenu" id="sizeOption" onchange="changeFontSize()">
+                <option value="14px" selected>NORMAL TEXT</option>
+                <option value="18px">MEDIUM TEXT</option>
+                <option value="32px">BIG TEXT</option>
+                </select>
+                <label for="colorOption2">Font&nbsp;colour: </label>
+                <select  class="backGroundColourMenu" id="colorOption2" onchange="changeFontColour()">
+                    <option value="red">RED</option>
+                    <option value="white">WHITE</option>
+                    <option value="green">GREEN</option>
+                    <option value="yellow">YELLOW</option>
+                    <option value="ivory">IVORY</option>
+                    <option value="pink">PINK</option>
+                    <option value="purple">PURPLE</option>
+                    <option value="black" selected>BLACK</option>
+                </select>
+            </div>
+            <br>
+
+            <h3> ABOUT US </h3>
+            <button id="ttsButton" class="tts-button" tabindex="2">Start Reading</button>
+            <br>
+            <p class="isLocked">
+            Welcome to our photography website, we are passionate photographers who believe in the power of sharing knowledge to inspire others.
+            </p>
+            <br>
+            The goal is to create a space where amateur photographers can learn, grow, and connect in a supportive environment.
+            </p>
+            <br>
+            <p class="isLocked">
+            This website is a place for you to showcase your photos, receive feedback via a member photo rating system, and to be inspired by other peoples photos, we are building a community on a foundation of respect and honesty and we expect everyone to be polite and thoughtful.
+            </p>
+            <br>
+            <p class="isLocked">
+            We ask that all photos uploaded are your own original work.
+            </p>
+            <br>
+            <p class="isLocked">
+            Whether you're just starting out or have been taking photos for a while, we invite you to join us, share your work, see what others are creating, and let's help each other become better photographers.
+            </p>
+            <br>
+            <p class="isLocked">To join our newsletter, click the news letter button and leave your email address, our newsletter is published yearly and will be emailed to you.
+            </p>
+            <br>
+            <p class="isLocked">If you would like assistance, click on the Assistance button, leave your phone number and we will contact you.
+            </p>
+            <br>
+            <br>
+            <p1 class="findUs">Find us in Pirimai, Napier 4112</p1>
+            <br>
+            <br>
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3078.0077579362255!2d176.8844092!3d-39.5143146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d69b3425154de97%3A0x7b925452a019bd4d!2s2%20Clarence%20Cox%20Crescent%2C%20Pirimai%2C%20Napier%204112!5e0!3m2!1sen!2snz!4v1756346746792!5m2!1sen!2snz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
+
+        </main>
+        <!--Side Bar--> 
+        <aside class="sidebar">
+            <div class="outer-container">
+                <div class="grid-container">
+                    <p id="loginText" class="loginText"></p> <!--This stores the Logged In / Logged Out Text - Text Set with JScipt' -->
+                    <input text="username" title="username" type="text" id="loginname" placeholder="Login Name" class="login-name-box" tabindex="3">
+                    <input text="password" title="password" type="password" id="password" placeholder="Password" class="password-box" tabindex="4">
+                    <a class="box login-box" onclick="loginUser()" tabindex="5"></a>  <!--This is the login button - Text Set with JScript-->
+                    <a class="box open-gallery" id="opengallery" href="gallery.html" tabindex="6">Open<br>Gallery</a>
+                    <a class="box home-box" href="index.html" tabindex="7">Home</a>
+                    <a class="box join-box half-disabled-link " href="joinUs.html" tabindex="8">Join Us</a>
+                    <a class="box upload-box half-disabled-link" href="upLoad.html" tabindex="9">Upload</a>
+                </div>
+            </div>
+        </aside>
+        <!--Footer Bar-->
+        <main class="footer-bar isLocked">
+            <p>A website for picture enthusiasts<br>Created by Peter Cunningham</p>
+        </main>
+    </div>
+
+    <!--Curtain Menu Layer-->
+    <!--script src="googleTranslate.js"></script>-->
+
+    <script src="textToSpeech.js"></script>
+    <script src="userControl.js"></script>
+    <script src="screenSetup.js"></script>    
+    <script src="aboutUs.js"> </script> 
+
+    <script src="googleTranslate.js"></script>    
+
+<script type="text/javascript">
+
+    function googleTranslateElementInit() 
+    {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,mi,de,es,fr,it,ja,ko,pt,zh-CN', 
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+        
+        // Monitor for translation changes
+        setTimeout(function() {
+            monitorTranslation();
+        }, 1500);
+    }
+
+    hideGoogleTranslateBanner();
+
+    var checkCount = 0;
+    var bannerChecker = setInterval(function() 
+    {
+        hideGoogleTranslateBanner();
+        checkCount++;
+        if (checkCount > 100) { // Extended to 10 seconds
+            clearInterval(bannerChecker);
+        }
+    }, 100);
+
+    window.addEventListener('load', function() 
+    {
+        hideGoogleTranslateBanner();
+        setTimeout(monitorTranslation, 2000);
+    });
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', hideGoogleTranslateBanner);
+    } else {
+        hideGoogleTranslateBanner();
+    }
+
+    // Function to dynamically load the external Google Translate script
+    function loadGoogleTranslateScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        // Use the original source with the callback
+        script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=auto';
+        document.body.appendChild(script);
+    }
+
+    // Defer the script loading until the entire page (DOM, images, CSS) is fully loaded
+    // ADD GOOGLE TRANSLATOR AS THE LAST THING TO LOAD
+    window.addEventListener('load', loadGoogleTranslateScript);
+
+</script>
+</body>
+</html>

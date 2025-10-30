@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT US</title>
+</head>
+<body>
+    <h1>CONTACT US</h1>
+    <p>Feel free to reach out to us with any questions or comments you may have.</p>
+    <!-- Contact Form -->
+    <form id="contactForm">
+        <label">Name: </label><input type="text" id="name" name="name" placeholder="Your Name" required><br>
+        <lable">Email: </lable><input type="email" id="email" name="email" placeholder="Your Email" required><br>
+        <label">Message: </label><br>
+        <textarea id="message" name="message" placeholder="Your Message" required rows="5"></textarea> <br>
+        <button type="submit">Send Message</button>
+    </form>
+    <!-- Modal Dialog Container: Feedback or notification -->
+    <dialog id="dialogContainer">
+        <h2>Notification</h2>
+        <p id="notification"></p>
+        <button onclick="document.getElementById('dialogContainer').close()">CLOSE</button>
+    </dialog>
+            <!-- Display all messages fetched from database -->
+            <h1>List of existing messages: </h1>
+            <div id="messagesContainer"></div>
+
+            <!-- Link to external javascript as a 'module' -->
+            <script src="contactDatabase.js" type="module"></script>
+</body>
+</html>

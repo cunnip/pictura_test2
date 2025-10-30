@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    Without the maximum scale and user-scalable on smaller devices it was rescaling and I could not stop it.--> 
+
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="index-page">
+    <!--Navigation Section-->
+    <!--Add Sandwich Icon-->
+    <nav>
+        <a href="#" class="sandwichIcon" onclick="openNav()" tabindex="1">&#9776;</a>
+        <h2 id="welcometext" class="welcomeText">Welcome to PICTURA an extravaganza of photos</h2>
+        <div class = "translate">
+            <div id="google_translate_element" style="padding: 5px;" tabindex="-1"></div>
+        </div>
+    </nav>   
+    
+    <!--The curtain dropdown menu-->
+    <div id="myNav" class="overlay">
+        <p class="close-icon" onclick="closeNav()" tabindex="2"> &times; </p>
+        <div class="overlay-content" tabindex="2">
+    <a href="aboutUs.html">About Us</a>        
+        </div>
+    </div>
+
+    <!--The main container, this covers the whole pages except the header-->
+    <div class="mainContainer">
+        <main class="mainContent allowScrollBar" id="maincontent">
+            <div class="gallery-grid isLocked" id="gallerygrid">
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 1" title="Photo"> 
+                    <div text="Home Page" class="photo-item1 photoitem isLocked" id="photoitem1" tabindex="-1">
+                        <img src="" alt="Photo 1" alt-text="Photo 1">
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 2" title="Photo"> 
+                    <div class="photo-item2 photoitem isLocked" id="photoitem2" tabindex="-1">
+                        <img src="" alt="Photo 2" alt-text="Photo 2">
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 3" title="Photo"> 
+                    <div class="photo-item3 photoitem isLocked" id="photoitem3" tabindex="-1">
+                        <img src="" alt="Photo 3" alt-text="Photo 3">
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 4" title="Photo"> 
+                    <div class="photo-item4 photoitem isLocked" id="photoitem4" tabindex="-1">
+                        <img src="" alt="Photo 4" alt-text="Photo 4">
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 5" title="Photo"> 
+                    <div class="photo-item5 photoitem isLocked" id="photoitem5" tabindex="-1">
+                        <img src="" alt="Photo 5" alt-text="Photo 5">
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 6" title="Photo"> 
+                    <div class="photo-item6 photoitem isLocked" id="photoitem6" tabindex="-1">
+                        <img src="" alt="Photo 6" alt-text="Photo 6">
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 7" title="Photo"> 
+                    <div class="photo-item7 photoitem isLocked" id="photoitem7" tabindex="-1">
+                        <img src="" alt="Photo 7" alt-text="Photo 7">
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 8" title="Photo"> 
+                    <div class="photo-item8 photoitem isLocked" id="photoitem8" tabindex="-1">
+                        <img src="" alt="Photo 8" alt-text="Photo 8">
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 9" title="Photo"> 
+                    <div class="photo-item9 photoitem isLocked" id="photoitem9" tabindex="-1">
+                        <img src="" alt="Photo 9" alt-text="Photo 9">
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 10" title="Photo"> 
+                    <div class="photo-item10 photoitem isLocked" id="photoitem10" tabindex="-1">
+                        <img src="" alt="Photo 10" alt-text="Photo 10">
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 11" title="Photo"> 
+                    <div class="photo-item11 photoitem isLocked" id="photoitem11" tabindex="-1">
+                        <img src="" alt="Photo 11" alt-text="Photo 11"> 
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 12" title="Photo"> 
+                    <div class="photo-item12 photoitem isLocked" id="photoitem12" tabindex="-1">
+                        <img src="" alt="Photo 12" alt-text="Photo 12"> 
+                    </div>
+                </a>
+                <a text="Home Page" href="#" tabindex="-1" alt-text="Photo 13" title="Photo"> 
+                    <div class="photo-item13 photoitem isLocked" id="photoitem13" tabindex="-1">
+                        <img src="" alt="Photo 13" alt-text="Photo 13"> 
+                    </div>
+                </a>
+            </div>
+        </main>
+        <aside class="sidebar">
+            <div class="outer-container">
+                <div class="grid-container">
+                    <p id="loginText" class="loginText"></p> <!--This stores the Logged In / Logged Out Text - Text Set with JScipt' -->
+                    <input text="username" title="username" type="text" id="loginname" placeholder="Login Name" class="login-name-box" tabindex="2">
+                    <input text="password" title="password" type="password" id="password" placeholder="Password" class="password-box" tabindex="3">
+                    <a class="box login-box half-disabled-link" id="login-Btn2" onclick="loginUser()" tabindex="4"></a>  <!--This is the login button - Text Set with JScript-->
+                    <a class="box open-gallery half-disabled-link" id="opengallery" href="gallery.html" tabindex="5">Open<br>Gallery</a>
+                    <a class="box about-box half-disabled-link" href="aboutUs.html" tabindex="6">About Us</a>
+                    <a class="box join-box half-disabled-link" id="signUpButton2" href="joinUs.html" tabindex="7">Join Us</a>
+                    <a class="box upload-box half-disabled-link" href="upLoad.html" tabindex="8">Upload</a>
+                    <!--
+                    <a class="box space-Filler half-disabled-link" tabindex="-1">|</a>
+                    <a class="box space-Filler2 half-disabled-link" tabindex="-1">|</a>
+                    <a class="box space-Filler3 half-disabled-link" tabindex="-1">|</a>
+                    <a class="box space-Filler4 half-disabled-link" tabindex="-1">|</a>
+                    -->
+                </div>
+            </div>
+        </aside>
+        <main class="footer-bar isLocked" onclick=""tabindex="-1">
+            <p>A website for picture enthusiasts<br>Created by Peter Cunningham</p>
+        </main>
+    </div>
+
+    <script src="userControl.js"></script>
+    <script src="screenSetup.js"></script>
+    <script src="pictureArray.js"></script>
+    <script src="index.js"> </script> 
+
+    <script src="googleTranslate.js"></script>
+    <!--<script src="login.js" type="module"></script> -->
+    <script>
+
+    document.addEventListener('click', preventLinkClick);
+    document.addEventListener('DOMContentLoaded', (showBaseImages));
+    
+    //document.addEventListener('DOMContentLoaded', (window.addEventListener('resize', debounce(setScreenUp))));
+
+    function googleTranslateElementInit()  
+    {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,mi,de,es,fr,it,ja,ko,pt,zh-CN', 
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+        
+        // Monitor for translation changes
+        setTimeout(function() {
+            monitorTranslation();
+        }, 1500);
+    }
+
+    // Start the observer after the page has loaded
+    window.addEventListener('load', observeForBanner);
+
+    // Function to load external Google Translate script delayed
+    function loadGoogleTranslateScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        // Use the original source with the callback
+        script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'; 
+        document.body.appendChild(script);
+    }
+
+    // Defer the script loading until the entire page (DOM, images, CSS) is fully loaded
+    window.addEventListener('load', loadGoogleTranslateScript);
+
+</script>
+
+<!-- THIS SLOWED THE LOADING OF THE WEB PAGE SIGNIFICANTLY SO MOVED TO ABOVE
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+-->
+
+</body>
+
+</html> 

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="gallery-page">
+
+    <!--Navigation Section-->
+    <!--Add Sandwich Icon-->
+    <nav>
+        <a href="#" class="sandwichIcon" onclick="openNav()" tabindex="1">&#9776;</a>
+        <h2 id="welcometext" class="welcomeText">Welcome to PICTURA an extravaganza of photos</h2>
+        <div class = "translate">
+            <div id="google_translate_element" style="padding: 5px;" tabindex="-1"></div>
+        </div>
+    </nav>   
+    
+    <!--The curtain dropdown menu-->
+    <div id="myNav" class="overlay">
+        <p class="close-icon" onclick="closeNav()"> &times; </p>
+        <div class="overlay-content">
+            <a href="aboutUs.html">About Us</a>
+        </div>
+    </div>
+
+    <!--The main container, this covers the whole pages except the header-->
+    <div class="mainContainer gallery-page">
+        <main class="mainContent gallery-page allowScrollBar" id="maincontent">
+            <div class="gallery-grid" id="gallerygrid" tabindex="-1">
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item1 photoitem" id="photoitem1">
+                        <img src="" alt="Photo 1">
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item2 photoitem" id="photoitem2" tabindex="-1">
+                        <img src="" alt="Photo 2">
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item3 photoitem" id="photoitem3" tabindex="-1">
+                        <img src=""alt="Photo 3">
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item4 photoitem" id="photoitem4" tabindex="-1">
+                        <img src="" alt="Photo 4">
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item5 photoitem" id="photoitem5" tabindex="-1">
+                        <img src="" alt="Photo 5">
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item6 photoitem" id="photoitem6" tabindex="-1">
+                        <img src="" alt="Photo 6">
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item7 photoitem" id="photoitem7" tabindex="-1">
+                        <img src=""alt="Photo 7">
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item8 photoitem" id="photoitem8" tabindex="-1">
+                        <img src="" alt="Photo 8">
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item9 photoitem" id="photoitem9" tabindex="-1">
+                        <img src="" alt="Photo 9">
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item10 photoitem" id="photoitem10" tabindex="-1">
+                        <img src=""alt="Photo 10">
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item11 photoitem" id="photoitem11" tabindex="-1">
+                        <img src=""alt="Photo 11"> 
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item12 photoitem" id="photoitem12" tabindex="-1">
+                        <img src=""alt="Photo 12"> 
+                    </div>
+                </a>
+                <a href="#" tabindex="-1"> 
+                    <div class="photo-item13 photoitem" id="photoitem13" tabindex="-1">
+                        <img src=""alt="Photo 13"> 
+                    </div>
+                </a>
+            </div>
+        </main>
+        <aside class="sidebar gallery-page">
+            <div class="outer-container gallery-page">
+                <div class="grid-container gallery-page">
+                    <p id="loginText" class="loginText"></p> <!--This stores the Logged In / Logged Out Text - Text Set with JScipt' -->
+                    <input type="text" id="loginname" placeholder="Login Name" class="login-name-box" tabindex="2">
+                    <input type="password" id="password" placeholder="Password" class="password-box" tabindex="3">
+                    <a class="box login-box half-disabled-link" onclick="loginUser()" tabindex="4"></a>  <!--This is the login button - Text Set with JScript-->
+                    <a class="box open-gallery half-disabled-link" id="opengallery" onclick="showImage(false)" tabindex="5">Rotate<br>Gallery</a>
+                    <a class="box home-box half-disabled-link" href="index.html" tabindex="6">Home</a>
+                    <a class="box join-box half-disabled-link" href="joinUs.html" tabindex="7">Join Us</a>
+                    <a class="box about-box half-disabled-link" href="aboutUs.html" tabindex="6">About Us</a>
+                    <a class="box upload-box half-disabled-link" href="upLoad.html" tabindex="8">Upload</a>
+                    <a class="box my-Photos half-disabled-link" tabindex="9">My<br>Photos</a>
+                    <a class="box all-Photos half-disabled-link" tabindex="10">All<br>Photos</a>
+                    <a class="box category-Photos half-disabled-link" tabindex="11">Category<br>Photos</a>
+                    <a class="box rated-Photos half-disabled-link" tabindex="12">Star<br>Rated</a>
+                </div>
+            </div>
+        </aside>
+        <main class="footer-bar gallery-page">
+            <p>A website for picture enthusiasts<br>Created by Peter Cunningham</p>
+        </main>
+    </div>
+
+    <script src="userControl.js"></script>
+    <script src="screenSetup.js"></script>
+    <script src="pictureArray.js"></script>
+    <script src="gallery.js"> </script> 
+
+    <script src="googleTranslate.js"></script>
+    
+    <script>
+
+    document.addEventListener('DOMContentLoaded', (showImage));
+    document.addEventListener('DOMContentLoaded', (window.addEventListener('resize', debounce(setScreenUp))));
+    //window.addEventListener('resize', clearFirstRowHeight);
+    //window.addEventListener('resize', debounce(showImage));
+
+    document.addEventListener('DOMContentLoaded', () => {
+        console.info ('Running Add Link')
+        const imageLinks = document.querySelectorAll('.gallery-grid a');
+        imageLinks.forEach(link => {
+            console.log(`Link Added To : ${link}`);
+            const img = link.querySelector('img'); 
+            if (img) {
+                const imgSrc = encodeURIComponent(img.src);
+                link.href = `pictureSingleView.html?src=${imgSrc}`;
+            }
+        });
+    });
+
+    function googleTranslateElementInit() 
+    {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,mi,de,es,fr,it,ja,ko,pt,zh-CN', 
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+        
+        // Monitor for translation changes
+        setTimeout(function() {
+            monitorTranslation();
+        }, 1500);
+    }
+
+    // Start the observer after the page has loaded
+    window.addEventListener('load', observeForBanner);
+
+    // Function to load external Google Translate script delayed
+    function loadGoogleTranslateScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'; 
+        document.body.appendChild(script);
+    }
+
+    // Defer the script loading until the entire page (DOM, images, CSS) is fully loaded
+    window.addEventListener('load', loadGoogleTranslateScript);
+
+</script>
+
+</body>
+</html> 
