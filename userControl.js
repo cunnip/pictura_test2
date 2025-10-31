@@ -50,14 +50,6 @@ const images = [
     {picPath: 'images/clintonwork.jpg', picOrientation: 'Portrait', picCategory: 'AI', picOwnersAccount: 'clinton', picStarRating: 1},
     {picPath: 'images/carvstruck.jpg', picOrientation: 'Landscape', picCategory: 'Different', picOwnersAccount: 'clinton', picStarRating: 1},
     {picPath: 'images/bratislavaai.jpg', picOrientation: 'Portrait', picCategory: 'AI', picOwnersAccount: 'clinton', picStarRating: 1}
-
-];
-
-const users = [
-    {name: 'peter', password: 'peter', allowComments: true, emailAddress: 'cunnip3@student.eit.nz'},
-    {name: 'cheryl', password: 'cheryl', allowComments: false, emailAddress: 'cheryl_old@yahoo.com'},
-    {name: 'kaitlyn', password: 'kaitlyn', allowComments: false, emailAddress: 'kaitlyn@oo.co.nz'},
-    {name: 'user_a', password: 'user_a', allowComments: true, emailAddress: 'pacone1@yahoo.com'}
 ];
 
 
@@ -68,34 +60,10 @@ let now = new Date();
 function updateClock() 
 {
     now = new Date();
-    // Use toLocaleTimeString for clean, localized output
     const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-
-    // In a web page, you would update an HTML element here:
-    // document.getElementById('clock').textContent = timeString;
-
-    //console.log(timeString);
-
-    // To Use
-    // let hour = now.getHours();
-    // let minute = now.getMinutes();
-    // let second = now.getSeconds();
 }
 
-// Log in user control
-let userIsLoggedIn; 
-const loginText = document.querySelector('.loginText');
-const loginBox = document.querySelector('.login-box');
-const uploadButton = document.querySelector('.upload-box');
-const galleryButton = document.querySelector('.open-gallery');
-
-
-const loggedInSessionKey = 'isUserLoggedIn'; 
-const savedLoginState = sessionStorage.getItem(loggedInSessionKey);
-
 function debounce(func, timeout = 150) {
-    //Written by AI
-    //console.log('Running debounce');    
     let timer;
     return (...args) => {
         clearTimeout(timer);
@@ -105,66 +73,32 @@ function debounce(func, timeout = 150) {
     };
 }
 
-if (savedLoginState === 'true') {
-    userIsLoggedIn = true;
-    loginText.textContent = 'Logged In';
-    loginBox.textContent = 'Logout';    
-    uploadButton.classList.remove('disabled-link');
-    galleryButton.classList.remove('disabled-link');
-} else {
-    userIsLoggedIn = false;
-    loginText.textContent = 'Logged Out'; 
-    loginBox.textContent = 'Login';
-    uploadButton.classList.add('disabled-link');
-    galleryButton.classList.add('disabled-link');
-}
-
-function loginUser() 
-{
-
-    if (userIsLoggedIn) {
-        userIsLoggedIn = false; 
-        const openGalleryButton = document.querySelector('.open-gallery');
-        openGalleryButton.disabled = true; //Disabled to ensure this can not run again until Image 13 is fully loaded
-        console.log('Button Disabled');
-        loginText.textContent = 'Logged Out';
-        loginBox.textContent = 'Login';
-        uploadButton.classList.add('disabled-link');
-        galleryButton.classList.add('disabled-link');
-
-        console.log('Running loginUser - Logged Out');
-
+// Wrapper function to call Supabase auth (is defined in auth.js module)
+function loginUser() {
+    if (typeof window.loginUserSupabase === 'function') {
+        window.loginUserSupabase();
     } else {
-        userIsLoggedIn = true; 
-        const openGalleryButton = document.querySelector('.open-gallery');
-        openGalleryButton.disabled = false; //Disabled to ensure this can not run again until Image 13 is fully loaded
-        console.log('Button Enabled');
-        loginText.textContent = 'Logged In';
-        loginBox.textContent = 'Logout';
-        uploadButton.classList.remove('disabled-link');
-        galleryButton.classList.remove('disabled-link');
-        console.log('Running loginUser - Logged In');
+        console.error('Supabase auth not loaded yet');
     }
-    sessionStorage.setItem(loggedInSessionKey, userIsLoggedIn.toString());
 }
 
 function preventLinkClick(event) 
-    {
-        // Find the closest ancestor <a> element that was clicked
-        let targetLink = event.target.closest('.photo-link');
+{
+    // Find the closest ancestor <a> element that was clicked
+    let targetLink = event.target.closest('.photo-link');
 
-        if (targetLink && targetLink.id) {
-            const itemId = targetLink.id;
-            // Check the lock status in our global state map
-            const isCurrentlyLocked = itemLockedStates[itemId];
+    if (targetLink && targetLink.id) {
+        const itemId = targetLink.id;
+        // Check the lock status in our global state map
+        const isCurrentlyLocked = itemLockedStates[itemId];
 
-            if (isCurrentlyLocked) {
-                // IMPORTANT: Stops the browser from navigating.
-                event.preventDefault(); 
-                statusMessage.textContent = `Click on ${itemId} prevented (LOCKED).`;
-            } else {
-                // Item is unlocked, allow default behavior (navigation)
-                statusMessage.textContent = `${itemId} is UNLOCKED and will navigate.`;
-            }
+        if (isCurrentlyLocked) {
+            // IMPORTANT: Stops the browser from navigating.
+            event.preventDefault(); 
+            statusMessage.textContent = `Click on ${itemId} prevented (LOCKED).`;
+        } else {
+            // Item is unlocked, allow default behavior (navigation)
+            statusMessage.textContent = `${itemId} is UNLOCKED and will navigate.`;
         }
     }
+}
