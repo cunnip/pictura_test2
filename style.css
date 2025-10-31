@@ -394,7 +394,6 @@ nav {
     .grid-container {
         grid-template-columns: repeat(4, 1fr); /* Creates 4 columns of equal width */
         grid-template-rows: repeat(3, 1fr); /* Creates 4 rows of equal height */
-        grid-c
     }
 
     .loginText {
@@ -776,9 +775,17 @@ nav {
             overflow: hidden;
             cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
         }
+
         .login-name-box, .password-box {
             background-color: white;
              width: 95%;
+        }
+
+        .loginText {
+            color: white;
+            background-color: black;
+             width: 95%;
+            font-size: small;
         }
 
         .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .pic13state {
@@ -1037,7 +1044,7 @@ nav {
 @media screen and (((min-width: 1400px) and (min-height:1024px)) or (aspect-ratio: 16/10)) {
     .gallery-grid {
         --columns:3;
-        --rows:4;
+        --rows:3;
         grid-template-columns: repeat(var(--columns), 1fr);
         grid-template-rows: repeat(var(--rows), 1fr);
     }
