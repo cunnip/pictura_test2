@@ -182,7 +182,7 @@ async function signInUser(email, password) {
         updateUIForLoginState(true, email);
         alert('Login successful! Welcome back!');
         console.log('User signed in:', data.user);
-        window.location.replace('/index.html');
+        window.location.replace('index.html');
         return true;
     }
 }
@@ -209,7 +209,7 @@ async function signOutUser() {
         {
             alert('Logout failed: ' + error.message);
             console.error('Logout error:', error);
-            window.location.replace('/index.html');
+            window.location.replace('index.html');
             return false;
         }
     } 
@@ -218,7 +218,7 @@ async function signOutUser() {
         updateUIForLoginState(false);
         alert('Logged out successfully!');
         console.log('User logged out.');
-        window.location.replace('/index.html');
+        window.location.replace('index.html');
         return true;
     }
 }
@@ -238,7 +238,7 @@ async function loginUserSupabase() {
             return;
         }
         await signInUser(email, password);
-        window.location.replace('/index.html');
+        window.location.replace('index.html');
     }
 }
 
@@ -275,7 +275,7 @@ async function signUpUser(email, password) {
    alert('ERROR! PLEASE TRY AGAIN');   
   } else {    
     alert('SIGNED UP SUCCESSFULLY! PLEASE SIGN IN NOW');
-    window.location.replace('/index.html');    
+    window.location.replace('index.html');    
   }
 }
 
