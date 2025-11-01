@@ -24,47 +24,32 @@
         <a class="close-icon" onclick="closeNav()" tabindex="2"> &times; </a>
         <div class="overlay-content">
             <a href="index.html" tabindex="2">HOME</a>
+            <a href="aboutUs.html">About Us</a>        
+            <a href="joinUs.html" class="box join-box" id="signUpCurtain" tabindex="2">Join Us</a>
+            <a href="gallery.html" class="box open-gallery2" tabindex="2">Open Gallery</a>
+            <a href="upLoad.html" class="box upload-box2" tabindex="2">Upload</a>
         </div>
     </div>
 
     <div class="mainContainer">
         <main class="mainContent allowScrollBar" id="customize-div">
-            <div class="noSound backGroundColourMenu">
-                <label for="colorOption">Background&nbsp;color: </label>
-                <select class="backGroundColourMenu" id="colorOption" onchange="changebgColor()">
-                <option value="red">RED</option>
-                <option value="white" selected>WHITE</option>
-                <option value="green">GREEN</option>
-                <option value="yellow">YELLOW</option>
-                <option value="ivory">IVORY</option>
-                <option value="pink">PINK</option>
-                <option value="purple">PURPLE</option>
-                <option value="black">BLACK</option>
-                </select>
+            <br>
+            <form id="contactForm">
+                <h3>UPLOAD PAGE</h3>
                 <br>
-                <label class="backGroundColourMenu" for="sizeOption">Font&nbsp;size: </label>
-                <select class="backGroundColourMenu" id="sizeOption" onchange="changeFontSize()">
-                <option value="14px" selected>NORMAL TEXT</option>
-                <option value="18px">MEDIUM TEXT</option>
-                <option value="32px">BIG TEXT</option>
-                </select>
-                <label for="colorOption2">Font&nbsp;colour: </label>
-                <select  class="backGroundColourMenu" id="colorOption2" onchange="changeFontColour()">
-                    <option value="red">RED</option>
-                    <option value="white">WHITE</option>
-                    <option value="green">GREEN</option>
-                    <option value="yellow">YELLOW</option>
-                    <option value="ivory">IVORY</option>
-                    <option value="pink">PINK</option>
-                    <option value="purple">PURPLE</option>
-                    <option value="black" selected>BLACK</option>
-                </select>
-            </div>
-            <br>
-
-            <h3>UPLOAD HOLDING PAGE</h3>
-            <br>
-            <p1 class="findUs">Find us in Pirimai, Napier 4112</p1>
+                <h3>Upload File to Supabase Storage</h1>
+                <input type="file" id="fileInput" />
+                <button id="uploadBtn">Upload</button>
+            </form>
+                <br>
+                <br>
+                <h5>Display all images in storage</h5       >
+                <div id="images-gallery"></div>
+                <br>
+                <br>
+                <br>
+            <h3>CONTACT US</h3>
+                <p1 class="findUs">Find us in Pirimai, Napier 4112</p1>
             <br>
             <br>
             <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3078.0077579362255!2d176.8844092!3d-39.5143146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d69b3425154de97%3A0x7b925452a019bd4d!2s2%20Clarence%20Cox%20Crescent%2C%20Pirimai%2C%20Napier%204112!5e0!3m2!1sen!2snz!4v1756346746792!5m2!1sen!2snz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
@@ -80,7 +65,7 @@
                     <a class="box login-box" onclick="loginUser()" tabindex="5"></a>  <!--This is the login button - Text Set with JScript-->
                     <a class="box open-gallery" id="opengallery" href="gallery.html" tabindex="6">Open<br>Gallery</a>
                     <a class="box home-box" href="index.html" tabindex="7">Home</a>
-                    <a class="box join-box half-disabled-link " href="joinUs.html" tabindex="8">Join Us</a>
+                    <a class="box join-box half-disabled-link" id="signUpButton2" href="joinUs.html" tabindex="7">Join Us</a>
                     <a class="box upload-box" href="upLoad.html" tabindex="8">Upload</a>
                 </div>
             </div>
@@ -97,7 +82,7 @@
     <script src="auth.js" type="module"></script>
     <script src="userControl.js"></script>
     <script src="screenSetup.js"></script>    
-    <script src="upload.js"> </script> 
+    <script src="upLoad.js"></script> 
 
     <script src="googleTranslate.js"></script>    
 

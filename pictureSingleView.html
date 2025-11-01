@@ -20,7 +20,11 @@
     <div id="myNav" class="overlay">
         <p class="close-icon" onclick="closeNav()"> &times; </p>
         <div class="overlay-content">
-            <a href="aboutUs.html">About Us</a>
+            <a href="index.html" tabindex="2">HOME</a>
+            <a href="aboutUs.html">About Us</a>        
+            <a href="joinUs.html" class="box join-box" id="signUpCurtain" tabindex="2">Join Us</a>
+            <a href="gallery.html" class="box open-gallery2" tabindex="2">Open Gallery</a>
+            <a href="upLoad.html" class="box upload-box2" tabindex="2">Upload</a>
         </div>
     </div>
 
@@ -51,9 +55,10 @@
         </div>
     </div>
 
-<script src="userControl.js"></script>
-<script src="screenSetup.js"></script>
-<script src="picturesSingleView.js"></script>
+    <script src="auth.js" type="module"></script>
+    <script src="userControl.js"></script>
+    <script src="screenSetup.js"></script>
+    <script src="picturesSingleView.js"></script>
 
 <script>
 
@@ -84,9 +89,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 }); 
 
-document.addEventListener('DOMContentLoaded', (showSingleImage));
-document.addEventListener('DOMContentLoaded', (window.addEventListener('resize', debounce(showSingleImageReload))));
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle image source from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const imageSource = urlParams.get('src');
+    const portrait = urlParams.get('portrait');
+    
+    const detailDiv = document.getElementById('photoitem14'); 
+    
+    if (imageSource && detailDiv) {
+        const detailImage = detailDiv.querySelector('img'); 
+        if (detailImage) {
+            detailImage.src = decodeURIComponent(imageSource); 
+        } else {
+            detailDiv.alt = "Error: Image tag not found inside photoitem14.";
+        }
+    } else {
+        if (detailDiv) {
+            detailDiv.querySelector('img').alt = "Error: Image source not found in URL.";
+        }
+    }
+    
+    // Show the image on initial load
+    showSingleImage();
+    
+    // Set up resize listener with debounce
+    window.addEventListener('resize', debounce(showSingleImageReload));
 
+});
 
 </script>
 

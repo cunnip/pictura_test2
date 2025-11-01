@@ -35,3 +35,11 @@ function resetToDefault() {
     document.getElementById("sizeOption").value = "16px";
     document.getElementById("fontOption").value = "black";
 }
+
+
+//Handle sign up button click
+document.getElementById('signUpButton').addEventListener('click', () => {
+  let email = document.getElementById('signupemail').value.trim();
+  let password = document.getElementById('signuppassword').value.trim();
+  signUpUser(email, password);
+});

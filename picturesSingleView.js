@@ -15,12 +15,10 @@ let screenOrientationPortrait = window.matchMedia("(orientation: portrait)");
 function showSingleImage() 
     {
         // Display the image and adjust to ensure rotation is correct.
-        console.log(`************Show Single Image Code Running***********: ${(now)}`);
-        if (userIsLoggedIn==false) {return};
+        if (isProduction==false) {console.log(`************Show Single Image Code Running***********: ${(now)}`);}
+        if (isProduction==false) {console.log(`CurrentScreenDimensions: ${(viewPortWidth)} x ${(viewPortHeight)}`);}
         const photoImg14 = document.querySelector('#photoitem14 img'); 
         const photoItem14 = photoImg14.parentElement; 
-        let viewPortWidth = window.innerWidth;
-        let viewPortHeight = window.innerHeight;
         let viewportScale = viewPortWidth/viewPortHeight
         let galleryGrid = false
         photoImg14.onload = function() 
@@ -51,12 +49,11 @@ function showSingleImageReload()
     {
         // Check the image and adjust to ensure rotation is correct when making changes to the view.
         if (isProduction==false) {console.log(`************Show Single Image Code RELOAD Running***********: ${(now)}`);}
+        if (isProduction==false) {console.log(`CurrentScreenDimensions: ${(viewPortWidth)} x ${(viewPortHeight)}`);}
 
         const photoImg14 = document.querySelector('#photoitem14 img'); 
-        let viewPortWidth = window.innerWidth;
-        let viewPortHeight = window.innerHeight;
         let viewportScale = viewPortWidth/viewPortHeight
-        let galleryGrid = false
+        let galleryGrid = false  ;
         
         if (isProduction==false) {console.log(`Image URL: ${photoImg14.src}`);}
         const actualWidth14 = photoImg14.naturalWidth;
@@ -85,11 +82,16 @@ function updateGalleryOrientation(screenOrientationPortrait, pic14rientationPort
         // --- Portrait Screen Logic ---
         if (screenOrientationPortrait.matches) 
             {
+                console.log(`Screen is in Portrait`);
+
                 // No transformation.
                 if (pic14rientationPortrait === true) 
                     {
+                        console.log(`Picture is in Portrait`);
+
                         if (viewPortWidth === 375 && viewPortHeight == 667)
                             {
+                                console.log(`viewPortWidth === 375 && viewPortHeight == 667`);
                                 galleryGrid.style.top = '0%';
                                 galleryGrid.style.left= '0%';
                                 maincontent.style.height = '66vh';
@@ -100,11 +102,13 @@ function updateGalleryOrientation(screenOrientationPortrait, pic14rientationPort
                             {
                                 if (viewPortWidth >= 768)                                
                                     {
+                                        console.log(`viewPortWidth >= 768`);
                                         newTransform = 'rotate(0deg) scale(1)';
                                         logMessage = "Screen and picture are both portrait (no transform)";
                                     }
                                 else
                                     {
+                                        console.log(`viewPortWidth < 768`);
                                         maincontent.style.height = '68vh';
                                         newTransform = 'rotate(0deg) scale(1)';
                                         logMessage = "Screen and picture are both portrait (no transform)";
@@ -114,17 +118,23 @@ function updateGalleryOrientation(screenOrientationPortrait, pic14rientationPort
                 // No transformation.
                 else if (viewportScale > 0.57 && viewPortHeight <= 767 && pic14rientationPortrait === false) 
                     {
-                        if (viewPortWidth === 375 && viewPortHeight == 667)
+                        console.log(`Picture is in Landscape 1`);
+                        
+                        if (viewPortWidth === 375 && viewPortHeight === 667)
                             {
+                                console.log(`viewPortWidth = 375 && viewPortHeight = 667`);
                                 galleryGrid.style.top = '0%';
                                 galleryGrid.style.left= '0%';
                                 maincontent.style.height = '66vh';
                                 newTransform = 'rotate(90deg) scale(1.15)';
+                                console.log(`maincontent.style.height = '66vh'`);
                                 logMessage = "Screen is portrait, picture is landscape, and space allows (transform and enlarge)";
                             }
                         else
                             {
+                                console.log(`viewPortWidth NOT 375 viewPortHeight NOT 667`);
                                 maincontent.style.height = '68vh';
+                                console.log(`maincontent.style.height = '68vh'`);
                                 newTransform = 'rotate(0deg) scale(1)';
                                 logMessage = "Screen portrait, picture landscape, but view size is constrained (no transform)";
 
@@ -133,28 +143,40 @@ function updateGalleryOrientation(screenOrientationPortrait, pic14rientationPort
                             // Rotate 90 degrees and enlarge.
                 else 
                     {
+                        console.log(`Picture is in Landscape 2`);
                         if (viewPortWidth === 375 && viewPortHeight == 667)
                             {
+                                console.log(`viewPortWidth === 375 && viewPortHeight == 667`);
                                 galleryGrid.style.top = '0%';
                                 galleryGrid.style.left= '0%';
                                 maincontent.style.height = '66vh';
-                                newTransform = 'rotate(90deg) scale(1.2)';
+                                console.log(`maincontent.style.height = '66vh'`);
+                                newTransform = 'rotate(90deg) scale(1.08)';
                                 logMessage = "Screen is portrait, picture is landscape, and space allows (transform and enlarge)";
                             }
                         else
                             {
+                                console.log(`viewPortWidth NOT 375 && viewPortHeight == 667`);
                                 if (viewPortWidth >= 768)                                
                                     {
+                                        console.log(`viewPortWidth >= 768`);
                                         galleryGrid.style.top = '0%';
                                         galleryGrid.style.left= '0%';
+                                        maincontent.style.height = '88vh';
+                                        console.log(`maincontent.style.height = '88vh'`);
+                                        newTransform = 'rotate(90deg) scale(1.35)';
+                                        console.log('rotate(90deg) scale(1.35)');
                                     }
                                 else
                                     {
+                                        console.log(`viewPortWidth < 768`);
                                         galleryGrid.style.top = '0%';
                                         galleryGrid.style.left= '0%';
                                         maincontent.style.height = '68vh';
+                                        console.log(`maincontent.style.height = '68vh'`);
+                                        newTransform = 'rotate(90deg) scale(1.45)';
+                                        console.log('rotate(90deg) scale(1.45)');
                                     }
-                                newTransform = 'rotate(90deg) scale(1.45)';
                                 logMessage = "Screen is portrait, picture is landscape, and space allows (transform and enlarge)";
                             }
                     }
@@ -162,6 +184,7 @@ function updateGalleryOrientation(screenOrientationPortrait, pic14rientationPort
         // --- Landscape Screen
         else 
             {
+                console.log(`"Screen is in Landscape (no transform)"`);
                 // If the screen is not portrait, it is landscape.
                 newTransform = 'rotate(0deg) scale(1)';
                 logMessage = "Screen is in Landscape mode (no transform)";
