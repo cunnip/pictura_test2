@@ -149,8 +149,7 @@ function showImage(firstload) {
                                 openGalleryButton.disabled = false; 
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
-                                //setScreenUp()
-                                }
+                            }
                         
                         return
                     }
@@ -207,7 +206,11 @@ function showImage(firstload) {
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
                                 setScreenUp()
+                                if (typeof updateFilterBadges === 'function') {
+                                    updateFilterBadges();
                                 }
+
+                            }
                         return
                     }
                 return  
@@ -395,6 +398,8 @@ function showImage(firstload) {
     console.log(`Rows: ${(liveRowCount)}`);
     console.log(`Columns: ${(liveColumnCount)}`);
     console.log(`Grid Box Count: ${(gridBoxCount)}`);
+
+    updateFilterBadges();
 }
 
 //When users click on "sandwich icon", open or show the curtain menu layer
@@ -406,6 +411,55 @@ function closeNav() {
     document.getElementById("myNav").style.display = "none";
 }
 
+
+function updateFilterBadges() {
+    if (typeof filteredImagePaths === 'undefined') return;
+    
+    setTimeout(() => {
+        for (let i = 0; i < 12; i++) {
+            const photoItem = document.querySelector(`#photoitem${i+1}`);
+            const photoImg = document.querySelector(`#photoitem${i+1} img`);
+            
+            if (!photoItem || !photoImg) continue;
+            
+            photoItem.style.position = 'relative';
+            
+            const existingBadge = photoItem.querySelector('.filter-badge');
+            if (existingBadge) existingBadge.remove();
+            
+            const imgSrc = photoImg.src;
+            const pathParts = imgSrc.split('/');
+            const filename = pathParts[pathParts.length - 1];
+            const imgPath = 'images/' + filename;
+            
+            // Check BOTH landscape and portrait filtered sets
+            if (filteredImagePaths.has(imgPath) || filteredPortraitPaths.has(imgPath)) {
+                const badge = document.createElement('div');
+                badge.className = 'filter-badge';
+                badge.innerHTML = '✓';
+                badge.style.cssText = `
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    background-color: rgba(76, 175, 80, 0.9);
+                    color: white;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 14px;
+                    font-weight: bold;
+                    z-index: 10000;
+                    pointer-events: none;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                `;
+                photoItem.appendChild(badge);
+            }
+        }
+    }, 200);
+}
 
 function updateImageLinks() {
     console.info('Running Update Image Links');
@@ -437,3 +491,5 @@ window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(setScreenUp, 50);
 });
+
+

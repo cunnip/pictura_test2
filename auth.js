@@ -293,11 +293,6 @@ if (signUpButton) {
 
 
 
-
-
-
-
-
 //----------------------------------------------------------------------- Database work ---------------------------------
 // Supabase client setup
 
@@ -401,14 +396,22 @@ async function uploadFileToDB() {
  alert('File uploaded successfully: ' + data.path);
  console.log('File upload data:', data);
  fileInput.value = ''; // Clear the input
- 
+   
  // Refresh the displayed images
- displayAllImages();
+ //displayAllImages();
+ // Wait a moment for Supabase to finalize the file
+ await new Promise(resolve => setTimeout(resolve, 500)); // 500ms delay
+ 
+ // Now refresh the displayed images
+ await displayAllImages(); // If displayAllImages is async, await it
+ 
+ console.log('Images refreshed');
+
 }
 
 
 // Handle file upload button click
-const uploadBtn = document.getElementById('contactForm');
+const uploadBtn = document.getElementById('uploadBtn');
 if (uploadBtn) 
     {
         document.getElementById('uploadBtn').addEventListener('click', uploadFileToDB);
@@ -529,5 +532,113 @@ if (uploadBtn)
         }
     displayAllImages();
     }
-// Display images on page load
 
+
+//------------------------------------------------
+// Display images based on login status
+// - If logged in: show ONLY user's private images
+// - If NOT logged in: show ONLY public (root level) images
+async function displayAllImages() {
+ let bucketName = 'uploads';
+ let imageContainer = document.getElementById('images-gallery');
+ 
+ // Check if user is logged in
+ const { data: { session } } = await supabase.auth.getSession();
+ 
+ if (session) {
+  // USER IS LOGGED IN: Show only their private images
+  const userId = session.user.id;
+  
+  // List files in the user's folder
+  let { data: files, error: listError } = await supabase
+   .storage
+   .from(bucketName)
+   .list(userId);
+  
+  // Error handling
+  if (listError) {
+   console.error('Error listing user images:', listError.message);
+   imageContainer.innerHTML = '<p>Error loading your images.</p>';
+   return;
+  }
+  
+  // Clear previous images
+  imageContainer.innerHTML = '';
+  
+  // Filter out placeholder files
+  let userFiles = files.filter(file => file.name !== '.emptyFolderPlaceholder');
+  
+  if (userFiles.length === 0) {
+   imageContainer.innerHTML = '<p>You have no uploaded images yet.</p>';
+   return;
+  }
+  
+  // Display user's images
+  for (const file of userFiles) {
+   let { data: publicUrlData } = supabase.storage
+    .from(bucketName)
+    .getPublicUrl(`${userId}/${file.name}`);
+   
+   if (publicUrlData && publicUrlData.publicUrl) {
+    let imgElement = document.createElement('img');
+    imgElement.src = publicUrlData.publicUrl;
+    imgElement.alt = file.name;
+    imgElement.style.maxWidth = '200px';
+    imgElement.style.margin = '10px';
+    imgElement.style.border = '2px solid green'; // Visual indicator for user images
+    imageContainer.appendChild(imgElement);
+   }
+  }
+  
+ } else {
+  // USER NOT LOGGED IN: Show only public (root level) images
+  
+  // List all items in the ROOT of the bucket
+  let { data: files, error: listError } = await supabase
+   .storage
+   .from(bucketName)
+   .list('', {
+    limit: 100,
+    offset: 0,
+    sortBy: { column: 'name', order: 'asc' }
+   });
+  
+  // Error handling
+  if (listError) {
+   console.error('Error listing public images:', listError.message);
+   imageContainer.innerHTML = '<p>Error loading public images.</p>';
+   return;
+  }
+  
+  // Clear previous images
+  imageContainer.innerHTML = '';
+  
+  // Filter: Only show FILES (not folders) at root level
+  // Folders have id === null, files have actual IDs
+  let publicFiles = files.filter(item => {
+   return item.id !== null && item.name !== '.emptyFolderPlaceholder';
+  });
+  
+  if (publicFiles.length === 0) {
+   imageContainer.innerHTML = '<p>No public images available.</p>';
+   return;
+  }
+  
+  // Display public images
+  for (const file of publicFiles) {
+   let { data: publicUrlData } = supabase.storage
+    .from(bucketName)
+    .getPublicUrl(file.name);
+   
+   if (publicUrlData && publicUrlData.publicUrl) {
+    let imgElement = document.createElement('img');
+    imgElement.src = publicUrlData.publicUrl;
+    imgElement.alt = file.name;
+    imgElement.style.maxWidth = '200px';
+    imgElement.style.margin = '10px';
+    imgElement.style.border = '2px solid blue'; // Visual indicator for public images
+    imageContainer.appendChild(imgElement);
+   }
+  }
+ }
+}

@@ -9,14 +9,11 @@
 
 <body class="page-single-view">
 
-    <!--Navigation Section-->
-    <!--Add Sandwich Icon-->
     <nav>
         <a href="#" class="sandwichIcon" onclick="openNav()">&#9776;</a>
         <h2 id="welcometext" class="welcomeText">Welcome to PICTURA an extravaganza of photos</h2>
     </nav>   
     
-    <!--The curtain dropdown menu-->
     <div id="myNav" class="overlay">
         <p class="close-icon" onclick="closeNav()"> &times; </p>
         <div class="overlay-content">
@@ -29,24 +26,28 @@
     </div>
 
     <div class="mainContainer">
-        <main class="mainContent" id="maincontent">
+        <main class="mainContent page-single-view" id="maincontent">
             <div class="gallery-grid2" id="gallerygrid2">
                 <picture class="photoitem14 photoitem" id="photoitem14">
-                    <img src="#" alt="Photo 14">
+                    <img src="#" alt="Photo 14" id="currentPhoto"> 
                 </picture>
             </div>
         </main>
         <aside class="sidebar">
-            <div class="outer-container">
-                <div class="grid-container">
+            <div class="outer-container page-single-view">
+                <div class="grid-container page-single-view">
                     <p id="loginText" class="loginText"></p> <!--This stores the Logged In / Logged Out Text - Text Set with JScipt' -->
-                    <input type="text" id="loginname" placeholder="Login Name" class="login-name-box">
-                    <input type="password" id="password" placeholder="Password" class="password-box">
-                    <a class="box login-box" onclick="loginUser()" tabindex="4"></a>  <!--This is the login button - Text Set with JScript-->
-                    <a class="box open-gallery" id="opengallery" href="gallery.html" tabindex="5">Return<br>Gallery</a>
+                    <input text="username" title="username" type="text" id="loginname" placeholder="Login Name" class="login-name-box" tabindex="2">
+                    <input text="password" title="password" type="password" id="password" placeholder="Password" class="password-box" tabindex="3">
+                    <a class="box login-box half-disabled-link" id="login-Btn2" onclick="loginUser()" tabindex="4"></a>  <!--This is the login button - Text Set with JScript-->
+                    <a class="box open-gallery half-disabled-link" id="opengallery" href="gallery.html" tabindex="5">Return<br>Gallery</a>
                     <a class="box home-box" href="index.html" tabindex="6">Home</a>
-                    <a class="box join-box" href="joinUs.html" tabindex="7">Join Us</a>
+                    <a class="box about-box half-disabled-link" href="aboutUs.html" tabindex="6">About Us</a>
+                    <a class="box join-box half-disabled-link" id="signUpButton2" href="joinUs.html" tabindex="7">Join Us</a>
                     <a class="box upload-box half-disabled-link" href="upLoad.html" tabindex="8">Upload</a>
+
+                    <a class="box photoStarRatingText" id="photoStarRatingText">Rate This Pic</a>             
+                    <a class="box photoStarRatingDisplay" id="photoStarRatingDisplay"></a>             
                 </div>
             </div>
         </aside>
@@ -61,66 +62,31 @@
     <script src="picturesSingleView.js"></script>
 
 <script>
-
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const imageSource = urlParams.get('src');
-    const portrait = urlParams.get('portrait');
     
-    // Select the div with the ID
     const detailDiv = document.getElementById('photoitem14'); 
     
     if (imageSource && detailDiv) {
-        // Find the <img> tag inside the 'photoitem14' div
         const detailImage = detailDiv.querySelector('img'); 
 
         if (detailImage) {
-            // Set the src attribute of the <img> element
             detailImage.src = decodeURIComponent(imageSource); 
+            updateStarsFromCurrentImage(); 
         } else {
-            // Optional: Handle case where the img tag is missing inside the div
             detailDiv.alt = "Error: Image tag not found inside photoitem14.";
         }
     } else {
-        // Handle cases where src is missing or photoitem14 is not found
         if (detailDiv) {
             detailDiv.querySelector('img').alt = "Error: Image source not found in URL.";
         }
     }
 }); 
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Handle image source from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const imageSource = urlParams.get('src');
-    const portrait = urlParams.get('portrait');
-    
-    const detailDiv = document.getElementById('photoitem14'); 
-    
-    if (imageSource && detailDiv) {
-        const detailImage = detailDiv.querySelector('img'); 
-        if (detailImage) {
-            detailImage.src = decodeURIComponent(imageSource); 
-        } else {
-            detailDiv.alt = "Error: Image tag not found inside photoitem14.";
-        }
-    } else {
-        if (detailDiv) {
-            detailDiv.querySelector('img').alt = "Error: Image source not found in URL.";
-        }
-    }
-    
-    // Show the image on initial load
-    showSingleImage();
-    
-    // Set up resize listener with debounce
-    window.addEventListener('resize', debounce(showSingleImageReload));
-
-});
-
+document.addEventListener('DOMContentLoaded', (showSingleImage));
+document.addEventListener('DOMContentLoaded', (window.addEventListener('resize', debounce(showSingleImageReload))));
 </script>
 
-
 </body>
-
-</html> 
+</html>

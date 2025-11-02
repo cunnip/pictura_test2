@@ -212,7 +212,7 @@ nav {
     }
 
     /* Styles for all boxes */
-    .login-name-box, .password-box, .login-box, .join-box, .about-box, .open-gallery, .upload-box, .home-box, .loginText, .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .pic13state {
+    .login-name-box, .password-box, .login-box, .join-box, .about-box, .open-gallery, .upload-box, .home-box, .loginText, .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .photoStarRatingText , .photoStarRatingDisplay , .pic13state {
         display:flex;
         font-size: 80%; /*1em=16px => 2em = 32px*/
         line-height: 140%;
@@ -235,7 +235,7 @@ nav {
         cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
     }
 
-    .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .pic13state {
+    .my-Photos, .all-Photos, .category-Photos, .rated-Photos {
         background-color: #edf108;
         color: black;
         flex-wrap: wrap;
@@ -243,16 +243,34 @@ nav {
         cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
     }
 
-    .space-Filler, .space-Filler2, .space-Filler3, .space-Filler4 {
-        background-color: #edf108;
-        color: #edf108;
+    .photoStarRatingText {
+        background-color:black;
+        font-size: small;
+        color: gold;
         flex-wrap: wrap;
         overflow: hidden;
         cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
         max-width: none;
         min-width: 90%;
-        max-height: 90%;
-        min-height: 90%;
+        height: 50%;
+        border:0%;
+        min-height: 100% !important;
+        cursor: none;
+        border-radius: 5px; 
+    }
+
+    .photoStarRatingDisplay {
+        background-color:black;
+        font-size: large;
+        color: gold;
+        flex-wrap: wrap;
+        overflow: hidden;
+        cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
+        max-width: none;
+        min-width: 90%;
+        height: 50%;
+        border:0%;
+        min-height: 100% !important;
         cursor: none;
         border-radius: 5px; 
     }
@@ -346,9 +364,16 @@ nav {
         grid-row-end: 3;
     }
 
-    .space-Filler {
+    .photoStarRatingText    {
         grid-column-start: 1;
-        grid-column-end: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    
+    .photoStarRatingDisplay {
+        grid-column-start: 3;
+        grid-column-end: 5;
         grid-row-start: 1;
         grid-row-end: 2;
     }
@@ -384,15 +409,39 @@ nav {
     }
 }
 
+/* Join Us Page Styles */
+.member {
+    /* Centering and Box Styling */
+    width: 95%; /* Wider on mobile to use screen space */
+    margin: 20px auto; 
+    padding: 10px;
+    
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    background-color: #ffffff;
+    
+    /* Text Styling - Mobile Defaults */
+    text-align: center;
+}
+
+.member h1 {
+    /* Use a fixed, clear size for mobile devices */
+    font-size: 1.5rem; /* ~24px */
+    margin: 0;
+    /* Allow wrapping by default on small screens */
+    white-space: normal; 
+}
+
+
 @media screen and (orientation: portrait) and (max-width: 767px) {
 
     .aboutUs .mainContent{
         font-size: 75%;
     }
-    .gallery-page .sidebar, .index-page .sidebar {
+    .gallery-page .sidebar, .index-page .sidebar, .page-single-view .sidebar {
 
     position: absolute;
-    bottom: 20vh;
+    bottom: 23vh;
     height: 15vh; /* Sets a fixed height for the sidebar */
 
     .grid-container {
@@ -626,7 +675,7 @@ nav {
         height: 11vh; 
     }    
     
-    .gallery-page .sidebar, .index-page .sidebar  {
+    .gallery-page .sidebar, .index-page .sidebar , .page-single-view .sidebar  {
 
         bottom: 20vh;
         height: 13vh; 
@@ -723,7 +772,7 @@ nav {
         .grid-container {
             display: grid;
             grid-template-columns: 1fr; 
-            grid-template-rows: repeat(16, 1fr); 
+            grid-template-rows: repeat(15, 1fr); 
             gap: 0%; /* Adds space between the grid items */
             height: 95vh; /* Sets a fixed height for the grid container */
         }
@@ -775,7 +824,7 @@ nav {
             height: 90%;
             width: 90%;
             max-width: 90%;
-            min-height: 70%;
+            min-height: 80%;
             max-height: 70%;
             background-color: #e1341e;
             color: black;
@@ -812,7 +861,7 @@ nav {
 
         /* Specific styles for the colored boxes */
         .home-box, .about-box, .join-box, .upload-box, .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .pic13state, .login-box, .open-gallery {
-            font-size: 80%;
+            font-size: large%;
             min-width: 60px;
             text-decoration: none;
             align-content: center;
@@ -885,9 +934,20 @@ nav {
             grid-row-start: 12;
             grid-row-end: 13;
         }
-        .space-Filler, .space-Filler2, .space-Filler3, .space-Filler4 {
-            display: none;
+
+        .photoStarRatingText    {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 11;
+            grid-row-end: 12;
         }
+
+        .photoStarRatingDisplay {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 12;
+            grid-row-end: 13;
+    }
 
     }
 
@@ -1331,7 +1391,7 @@ nav {
 
     .page-single-view .sidebar {
         position: fixed !important; 
-        top: 5vh !important; 
+        top: 10vh !important; 
         right: 0 !important;
         width: 150px !important; 
         left: calc(100vw - 150px) !important; 
@@ -1541,3 +1601,122 @@ div.goog-te-balloon-frame {
     overflow: hidden;
     cursor: pointer; /* Changes the cursor to a pointer when hovering over the box */
 }
+
+
+/* Join Us Page Styles */
+
+@media (min-width: 600px) {
+    .member {
+        width: 70%; 
+    }
+
+    .member h1 {
+        font-size: 3.5vw; 
+        white-space: nowrap;
+    }
+}
+
+@media (min-width: 1000px) {
+    .member {
+        max-width: 600px;
+        width: 50%;
+    }
+    
+    .member h1 {
+        font-size: 33px; 
+    }
+}
+
+.signUpUserInfo {
+    width: 90%;
+    max-width: 450px; /* Example max width */
+    margin: 20px auto; 
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Define the Input Row using Flexbox */
+.input-row {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 10px; 
+}
+
+/* Control Label Width */
+.signUpUserInfo label {
+    width: 120px; 
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Make Input Take Remaining Space */
+.input-row input {
+    flex-grow: 1; 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* --- Checkbox Styling --- */
+.checkbox-row {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* Style the label within the checkbox row */
+.checkbox-row label {
+    width: auto; 
+    text-align: right; 
+    padding-right: 5px;
+    font-weight: normal;
+}
+
+/* Style the checkbox itself */
+.checkbox-row input[type="checkbox"] {
+    margin: 0; 
+    width: 16px; 
+    height: 16px;
+    margin-left: 5px;
+}
+
+.map {
+    max-width: 80%; 
+    height: auto;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#imagePreview{
+    /* Set display to block and a margin for reliable centering */
+    display: block; 
+    margin: 15px auto; /* Adds vertical space and ensures centering */
+    
+    /* Add styling for better look */
+    border: 1px solid #ccc; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+
+/* Now the star rating config for the Single Picture view page */
+.star {
+    font-size: 1.5rem; /* Adjust star size */
+    margin: 0 1px;
+}
+
+.star.filled {
+    color: gold; 
+}
+
+.star.empty {
+    color: #ccc; 
+}
+
+
