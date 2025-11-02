@@ -231,8 +231,12 @@ function showImage(firstload) {
     else
         {
             console.log('DID NOT RUN FIRST LOAD');
-            //const nextImage = images[currentPictureIndex];
-            portrait13 = pic13OrientationPortrait
+            
+            // CRITICAL FIX: Read the CURRENT Image 13's orientation from the stored data
+            // This is the orientation that was detected in the PREVIOUS cycle's onload
+            const pic13Details = getPictureDetails(13);
+            portrait13 = pic13Details.isPortrait;
+            console.log(`Reading stored Image 13 orientation: ${portrait13}`);
 
         }
     //if (userIsLoggedIn==false) {return};
@@ -513,5 +517,3 @@ window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(setScreenUp, 50);
 });
-
-
