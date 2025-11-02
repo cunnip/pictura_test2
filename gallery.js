@@ -23,8 +23,6 @@ function setCurrentPictureIndex(index) {
 
 const pictureIndexKey = 'PictureIndexSessionKey'; 
 let firstItemHeight = 0;
-let pic13OrientationPortrait = false;
-let pic14OrientationPortrait = false;
 
 let currentPictureIndex = getCurrentPictureIndex()
 if (isProduction==false) {console.log(`Picture Index Initialized: ${currentPictureIndex}`);}
@@ -134,13 +132,10 @@ function showImage(firstload) {
                         portrait12 = getPictureDetails(12).isPortrait
                         photoImg13.src = getPictureDetails(13).path
                         portrait13 = getPictureDetails(13).isPortrait
-                        pic13OrientationPortrait = portrait13
-                        console.log(`Image pic13OrientationPortrait: ${pic13OrientationPortrait}`);
                         console.log(`Portrait 13: ${portrait13}`);
 
                             photoImg13.onload = function() {
                                 console.log(`Image 13 URL OnLoad: ${photoImg13.src}`);
-                                console.log(`********pic13OrientationPortrait Variable On Load: ${pic13OrientationPortrait}`);
                                 console.log(`********Portrait 13 Variable On Load: ${portrait13}`);
 
                                 const actualWidth13 = this.naturalWidth;
@@ -149,6 +144,12 @@ function showImage(firstload) {
 
                                 const openGalleryButton = document.querySelector('.open-gallery');
 
+                                if (openGalleryButton.disabled = false)
+                                    {
+                                        console.log(`Gallery Button 1 Already Enabled - Should Not Be`);
+                                        if (isProduction==False) { alert("Gallery Button 1 Already Enabled - Should Not Be - Please click OK to continue.");}
+                                    }; 
+                                    
                                 openGalleryButton.disabled = false; 
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
@@ -203,8 +204,12 @@ function showImage(firstload) {
                                 console.log(`Image URL: ${photoImg13.src}`);
                                 const actualWidth13 = this.naturalWidth;
                                 const actualHeight13 = this.naturalHeight;
-                                if (actualWidth13 < actualHeight13) {pic13OrientationPortrait = true} else {pic13OrientationPortrait = false};
                                 const openGalleryButton = document.querySelector('.open-gallery');
+                                if (openGalleryButton.disabled = false)
+                                    {
+                                        console.log(`Gallery Button 2 Already Enabled - Should Not Be`);
+                                        if (isProduction==False) { alert("Gallery Button 2 Already Enabled - Should Not Be - Please click OK to continue.");}
+                                    }; 
                                 openGalleryButton.disabled = false; 
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
@@ -222,6 +227,11 @@ function showImage(firstload) {
             else
             {
                 const openGalleryButton = document.querySelector('.open-gallery');
+                if (openGalleryButton.disabled = false)
+                    {
+                        console.log(`Gellery Button 3 Already Enabled - Should Not Be`);
+                        if (isProduction==False) { alert("Gallery Button 3 Already Enabled - Should Not Be - Please click OK to continue.");}
+                    }; 
                 openGalleryButton.disabled = false; 
                 console.log('Button Enabled');
                 console.log('PicturesFound');
@@ -234,6 +244,8 @@ function showImage(firstload) {
             
             // CRITICAL FIX: Read the CURRENT Image 13's orientation from the stored data
             // This is the orientation that was detected in the PREVIOUS cycle's onload
+            // This did not fix it!!!
+
             const pic13Details = getPictureDetails(13);
             portrait13 = pic13Details.isPortrait;
             console.log(`Reading stored Image 13 orientation: ${portrait13}`);
@@ -244,14 +256,12 @@ function showImage(firstload) {
     if (portrait13)
             {
                 console.log(`*****PORTRAIT SHORTCUT - Only Update Image 1 and 13`);
-                console.log(`*****Pic 13 Variable pic13OrientationPortrait Portrait: ${portrait13}`);
                 photoImg1.src = photoImg13.src;
                 photoImg13.src = images[currentPictureIndex].picPath;
             }
         else
             {    
                 console.log(`*****LOAD ALL 13 IMAGES`);
-                console.log(`*****Pic 13 Variable pic13OrientationPortrait Portrait: ${portrait13}`);
                 photoImg1.src = photoImg2.src;
                 photoImg2.src = photoImg3.src;
                 photoImg3.src = photoImg4.src;
@@ -385,9 +395,13 @@ function showImage(firstload) {
         console.log(`New Load Image 13 URL: ${photoImg13.src}`);
         const actualWidth13 = this.naturalWidth;
         const actualHeight13 = this.naturalHeight;
-        if (actualWidth13 < actualHeight13) {pic13OrientationPortrait = true} else {pic13OrientationPortrait = false};
         updatePictureDetails(13, photoImg13.src, actualWidth13<actualHeight13);
         const openGalleryButton = document.querySelector('.open-gallery');
+        if (openGalleryButton.disabled = false)
+            {
+                console.log(`Gellery Button 4 Already Enabled - Should Not Be`);
+                if (isProduction==False) { alert("Gallery Button 4 Already Enabled - Should Not Be - Please click OK to continue.");}
+            }; 
         openGalleryButton.disabled = false; 
         console.log(`****New Load Image 13 Portrait: ${actualWidth13<actualHeight13}`);
         console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);

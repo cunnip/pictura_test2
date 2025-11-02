@@ -135,7 +135,7 @@ function updatePictureDetails(pictureNumber, path, isPortrait) {
             {
                 console.log(`!*!*!*!*!*!*!*!*!*!*!*!* THIS SHOULD NOT HAPPEN.`);            
                 console.log(`!*!*!*!*!*!*!*!*!*!*!*!* Picture ${pictureNumber} IS PORTRAIT ${isPortrait}.`);            
-                alert("Portrait Photo In Wrong Location - Please click OK to continue.");
+                if (isProduction==False) { alert("Portrait Photo In Wrong Location - Please click OK to continue.");}
             }
         }
     if (isProduction==false) {console.log(`Array Updated Portrait for Picture ${pictureNumber} ${isPortrait}.`);}
