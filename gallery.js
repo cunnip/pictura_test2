@@ -147,7 +147,7 @@ function showImage(firstload) {
                                 if (openGalleryButton.disabled = false)
                                     {
                                         console.log(`Gallery Button 1 Already Enabled - Should Not Be`);
-                                        if (isProduction==False) { alert("Gallery Button 1 Already Enabled - Should Not Be - Please click OK to continue.");}
+                                        if (isProduction==false) { alert("Gallery Button 1 Already Enabled - Should Not Be - Please click OK to continue.");}
                                     }; 
                                     
                                 openGalleryButton.disabled = false; 
@@ -208,7 +208,7 @@ function showImage(firstload) {
                                 if (openGalleryButton.disabled = false)
                                     {
                                         console.log(`Gallery Button 2 Already Enabled - Should Not Be`);
-                                        if (isProduction==False) { alert("Gallery Button 2 Already Enabled - Should Not Be - Please click OK to continue.");}
+                                        if (isProduction==false) { alert("Gallery Button 2 Already Enabled - Should Not Be - Please click OK to continue.");}
                                     }; 
                                 openGalleryButton.disabled = false; 
                                 console.log('Button Enabled');
@@ -230,7 +230,7 @@ function showImage(firstload) {
                 if (openGalleryButton.disabled = false)
                     {
                         console.log(`Gellery Button 3 Already Enabled - Should Not Be`);
-                        if (isProduction==False) { alert("Gallery Button 3 Already Enabled - Should Not Be - Please click OK to continue.");}
+                        if (isProduction==false) { alert("Gallery Button 3 Already Enabled - Should Not Be - Please click OK to continue.");}
                     }; 
                 openGalleryButton.disabled = false; 
                 console.log('Button Enabled');
@@ -400,7 +400,7 @@ function showImage(firstload) {
         if (openGalleryButton.disabled = false)
             {
                 console.log(`Gellery Button 4 Already Enabled - Should Not Be`);
-                if (isProduction==False) { alert("Gallery Button 4 Already Enabled - Should Not Be - Please click OK to continue.");}
+                if (isProduction==false) { alert("Gallery Button 4 Already Enabled - Should Not Be - Please click OK to continue.");}
             }; 
         openGalleryButton.disabled = false; 
         console.log(`****New Load Image 13 Portrait: ${actualWidth13<actualHeight13}`);
