@@ -227,6 +227,7 @@ function showImage(firstload) {
     else
         {
             console.log('DID NOT RUN FIRST LOAD');
+            const nextImage = images[currentPictureIndex];
             portrait13 = pic13OrientationPortrait
 
         }
@@ -261,7 +262,7 @@ function showImage(firstload) {
         const actualWidth1 = this.naturalWidth;
         const actualHeight1 = this.naturalHeight;
         console.log(`Image 1 During onload check: ${actualWidth1}x${actualHeight1}`);
-        updatePictureDetails(1, photoImg1.src, actualWidth1>actualHeight1);
+        updatePictureDetails(1, photoImg1.src, actualWidth1<actualHeight1);
         console.log(`Image 1 Safely loaded: ${actualWidth1}x${actualHeight1}`);
         console.log(`Image 1 Running setScreenUp()`);
         setScreenUp()
@@ -272,7 +273,7 @@ function showImage(firstload) {
         const actualWidth2 = this.naturalWidth;
         const actualHeight2 = this.naturalHeight;
         console.log(`Image 2 During onload check: ${actualWidth2}x${actualHeight2}`);
-        updatePictureDetails(2, photoImg2.src, actualWidth2>actualHeight2);
+        updatePictureDetails(2, photoImg2.src, actualWidth2<actualHeight2);
         console.log(`Image 2 Safely loaded: ${actualWidth2}x${actualHeight2}`);
     }
 
