@@ -160,7 +160,13 @@ function updateStarsFromCurrentImage() {
     if (imageSourcePath) {
         try {
             const url = new URL(imageSourcePath);
-            simplePath = url.pathname.substring(1); 
+            simplePath = url.pathname.substring(1);
+            
+            // Remove the GitHub Pages repository prefix
+            const repoName = 'pictura_test2';
+            if (simplePath.startsWith(repoName + '/')) {
+                simplePath = simplePath.substring(repoName.length + 1);
+            }
         } catch (e) {
             simplePath = decodeURIComponent(imageSourcePath);
         }
