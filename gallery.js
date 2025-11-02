@@ -6,6 +6,7 @@ if (isProduction) {
     // also available to override. .info, .debug, etc.
 }
 
+let openGallery = false
 
 function getCurrentPictureIndex() {
     const storedValue = sessionStorage.getItem(pictureIndexKey);
@@ -46,7 +47,14 @@ const D1024_600 = window.matchMedia('(min-width: 1024px) and (min-height: 600px)
 function showImage(firstload) {
 
     if (isProduction==false) {console.log('************Show Image Code Running***********');}
- 
+    if (openGallery == true) 
+        {
+            if (isProduction==false) {console.log('Missing Run of ShowImage as OpenGallery Still Running');}
+            return
+        }
+    openGallery = true; 
+
+    
     const photoImg1 = document.querySelector('#photoitem1 img'); 
     //const photoItem1 = photoImg1.parentElement.parentElement;  
     const photoImg2 = document.querySelector('#photoitem2 img'); 
@@ -80,9 +88,7 @@ function showImage(firstload) {
     let portrait11 = false;let portrait12 = false;let portrait13 = false;
 
     const openGalleryButton = document.querySelector('.open-gallery');
-    openGalleryButton.disabled = true; //Disabled to ensure this can not run again until Image 13 is fully loaded
-    console.log('Button Disabled'); // Image 13 onload enables the button.
- 
+    
     if (firstload) 
         {   
             console.log('FirstLoad');
@@ -141,16 +147,7 @@ function showImage(firstload) {
                                 const actualWidth13 = this.naturalWidth;
                                 const actualHeight13 = this.naturalHeight;
                                 console.log(`***********Portrait 13 Actual Data On Load: ${actualWidth13<actualHeight13}`);
-
-                                const openGalleryButton = document.querySelector('.open-gallery');
-
-                                if (openGalleryButton.disabled = false)
-                                    {
-                                        console.log(`Gallery Button 1 Already Enabled - Should Not Be`);
-                                        if (isProduction==false) { alert("Gallery Button 1 Already Enabled - Should Not Be - Please click OK to continue.");}
-                                    }; 
-                                    
-                                openGalleryButton.disabled = false; 
+                                openGallery = false; 
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
                             }
@@ -205,12 +202,7 @@ function showImage(firstload) {
                                 const actualWidth13 = this.naturalWidth;
                                 const actualHeight13 = this.naturalHeight;
                                 const openGalleryButton = document.querySelector('.open-gallery');
-                                if (openGalleryButton.disabled = false)
-                                    {
-                                        console.log(`Gallery Button 2 Already Enabled - Should Not Be`);
-                                        if (isProduction==false) { alert("Gallery Button 2 Already Enabled - Should Not Be - Please click OK to continue.");}
-                                    }; 
-                                openGalleryButton.disabled = false; 
+                                openGallery = false; 
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
                                 console.log(`gallery Calling setScreenUp`);
@@ -227,12 +219,7 @@ function showImage(firstload) {
             else
             {
                 const openGalleryButton = document.querySelector('.open-gallery');
-                if (openGalleryButton.disabled = false)
-                    {
-                        console.log(`Gellery Button 3 Already Enabled - Should Not Be`);
-                        if (isProduction==false) { alert("Gallery Button 3 Already Enabled - Should Not Be - Please click OK to continue.");}
-                    }; 
-                openGalleryButton.disabled = false; 
+                openGallery = false; 
                 console.log('Button Enabled');
                 console.log('PicturesFound');
                 return
@@ -397,12 +384,7 @@ function showImage(firstload) {
         const actualHeight13 = this.naturalHeight;
         updatePictureDetails(13, photoImg13.src, actualWidth13<actualHeight13);
         const openGalleryButton = document.querySelector('.open-gallery');
-        if (openGalleryButton.disabled = false)
-            {
-                console.log(`Gellery Button 4 Already Enabled - Should Not Be`);
-                if (isProduction==false) { alert("Gallery Button 4 Already Enabled - Should Not Be - Please click OK to continue.");}
-            }; 
-        openGalleryButton.disabled = false; 
+        openGallery = false; 
         console.log(`****New Load Image 13 Portrait: ${actualWidth13<actualHeight13}`);
         console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
         console.log('Button Enabled');
