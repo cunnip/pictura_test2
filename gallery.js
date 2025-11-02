@@ -7,6 +7,7 @@ if (isProduction) {
 }
 
 let openGallery = false
+const openGalleryButton = document.querySelector('.open-gallery');
 
 function getCurrentPictureIndex() {
     const storedValue = sessionStorage.getItem(pictureIndexKey);
@@ -52,6 +53,9 @@ function showImage(firstload) {
             if (isProduction==false) {console.log('Missing Run of ShowImage as OpenGallery Still Running');}
             return
         }
+
+    const openGalleryButton = document.querySelector('.open-gallery');
+    openGalleryButton.disabled = true; //Disabled to ensure this can not run again until Image 13 is fully loaded
     openGallery = true; 
 
     
@@ -87,8 +91,7 @@ function showImage(firstload) {
     let portrait6 = false;let portrait7 = false; let portrait8 = false;; let portrait9 = false;; let portrait10 = false;
     let portrait11 = false;let portrait12 = false;let portrait13 = false;
 
-    const openGalleryButton = document.querySelector('.open-gallery');
-    
+  
     if (firstload) 
         {   
             console.log('FirstLoad');
@@ -148,6 +151,7 @@ function showImage(firstload) {
                                 const actualHeight13 = this.naturalHeight;
                                 console.log(`***********Portrait 13 Actual Data On Load: ${actualWidth13<actualHeight13}`);
                                 openGallery = false; 
+                                openGalleryButton.disabled = false; 
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
                             }
@@ -203,6 +207,7 @@ function showImage(firstload) {
                                 const actualHeight13 = this.naturalHeight;
                                 const openGalleryButton = document.querySelector('.open-gallery');
                                 openGallery = false; 
+                                openGalleryButton.disabled = false; 
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
                                 console.log(`gallery Calling setScreenUp`);
@@ -220,6 +225,7 @@ function showImage(firstload) {
             {
                 const openGalleryButton = document.querySelector('.open-gallery');
                 openGallery = false; 
+                openGalleryButton.disabled = false; 
                 console.log('Button Enabled');
                 console.log('PicturesFound');
                 return
@@ -385,6 +391,7 @@ function showImage(firstload) {
         updatePictureDetails(13, photoImg13.src, actualWidth13<actualHeight13);
         const openGalleryButton = document.querySelector('.open-gallery');
         openGallery = false; 
+        openGalleryButton.disabled = false; 
         console.log(`****New Load Image 13 Portrait: ${actualWidth13<actualHeight13}`);
         console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
         console.log('Button Enabled');
