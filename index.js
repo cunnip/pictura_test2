@@ -91,9 +91,12 @@ function updateImageLinks() {
 let resizeTimeout;
 
 // 5. Initial Execution and Resizing
+
+console.log(`Index.js Add EventListener LOAD setScreenUp()`);
 window.addEventListener('load', setScreenUp);
 
 // Debounce the resize event: Wait 50ms after the user stops resizing
+console.log(`Index.js Add EventListener RESIZE setScreenUp()`);
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(setScreenUp, 50);

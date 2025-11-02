@@ -64,6 +64,8 @@ function updateClock()
 }
 
 function debounce(func, timeout = 150) {
+    console.log(`Gallery HTML Calling setScreenUp Thru Debounce`);
+
     let timer;
     return (...args) => {
         clearTimeout(timer);

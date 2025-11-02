@@ -435,6 +435,8 @@ function displayFirst12Images() {
     updateImageLinks();
     
     setTimeout(() => {
+        console.log(`FilterCode Calling setScreenUp`);
+        
         setScreenUp();
         
         setTimeout(() => {
@@ -572,6 +574,7 @@ function loadFilteredImages(filteredImages) {
     updateImageLinks();
     
     setTimeout(() => {
+        console.log(`FilterCode 2 Calling setScreenUp`);
         setScreenUp();
     }, 100);
 }

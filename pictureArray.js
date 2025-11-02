@@ -128,7 +128,17 @@ function updatePictureDetails(pictureNumber, path, isPortrait) {
     
     // Save the entire modified array back to session storage
     setGalleryPictureDetails(galleryData);
-    if (isProduction==false) {console.log(`Details updated and saved for Picture ${pictureNumber} ${isPortrait}.`);}
+    if (pictureNumber >=2 & pictureNumber <=12) 
+        {
+            console.log(`Checking Array Save Info ${pictureNumber} ${isPortrait}.`);            
+            if (isPortrait)
+            {
+                console.log(`!*!*!*!*!*!*!*!*!*!*!*!* THIS SHOULD NOT HAPPEN.`);            
+                console.log(`!*!*!*!*!*!*!*!*!*!*!*!* Picture ${pictureNumber} IS PORTRAIT ${isPortrait}.`);            
+                alert("Portrait Photo In Wrong Location - Please click OK to continue.");
+            }
+        }
+    if (isProduction==false) {console.log(`Array Updated Portrait for Picture ${pictureNumber} ${isPortrait}.`);}
 }
 
 

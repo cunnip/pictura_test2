@@ -139,13 +139,16 @@ function showImage(firstload) {
                         console.log(`Portrait 13: ${portrait13}`);
 
                             photoImg13.onload = function() {
-                                console.log(`Image 13 URL: ${photoImg13.src}`);
-                                console.log(`Image pic13OrientationPortrait: ${pic13OrientationPortrait}`);
-                                console.log(`Portrait 13: ${portrait13}`);
+                                console.log(`Image 13 URL OnLoad: ${photoImg13.src}`);
+                                console.log(`********pic13OrientationPortrait Variable On Load: ${pic13OrientationPortrait}`);
+                                console.log(`********Portrait 13 Variable On Load: ${portrait13}`);
 
                                 const actualWidth13 = this.naturalWidth;
                                 const actualHeight13 = this.naturalHeight;
+                                console.log(`***********Portrait 13 Actual Data On Load: ${actualWidth13<actualHeight13}`);
+
                                 const openGalleryButton = document.querySelector('.open-gallery');
+
                                 openGalleryButton.disabled = false; 
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
@@ -205,7 +208,12 @@ function showImage(firstload) {
                                 openGalleryButton.disabled = false; 
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
+                                console.log(`gallery Calling setScreenUp`);
                                 setScreenUp()
+                                if (typeof updateFilterBadges === 'function') {
+                                    updateFilterBadges();
+                                }
+
                             }
                         return
                     }
@@ -223,7 +231,7 @@ function showImage(firstload) {
     else
         {
             console.log('DID NOT RUN FIRST LOAD');
-            const nextImage = images[currentPictureIndex];
+            //const nextImage = images[currentPictureIndex];
             portrait13 = pic13OrientationPortrait
 
         }
@@ -231,11 +239,15 @@ function showImage(firstload) {
     
     if (portrait13)
             {
+                console.log(`*****PORTRAIT SHORTCUT - Only Update Image 1 and 13`);
+                console.log(`*****Pic 13 Variable pic13OrientationPortrait Portrait: ${portrait13}`);
                 photoImg1.src = photoImg13.src;
                 photoImg13.src = images[currentPictureIndex].picPath;
             }
         else
             {    
+                console.log(`*****LOAD ALL 13 IMAGES`);
+                console.log(`*****Pic 13 Variable pic13OrientationPortrait Portrait: ${portrait13}`);
                 photoImg1.src = photoImg2.src;
                 photoImg2.src = photoImg3.src;
                 photoImg3.src = photoImg4.src;
@@ -257,10 +269,11 @@ function showImage(firstload) {
     photoImg1.onload = function() {
         const actualWidth1 = this.naturalWidth;
         const actualHeight1 = this.naturalHeight;
-        console.log(`Image 1 During onload check: ${actualWidth1}x${actualHeight1}`);
+        console.log(`Image 1 Portrait: ${actualWidth1<actualHeight1}`);
         updatePictureDetails(1, photoImg1.src, actualWidth1<actualHeight1);
         console.log(`Image 1 Safely loaded: ${actualWidth1}x${actualHeight1}`);
         console.log(`Image 1 Running setScreenUp()`);
+        console.log(`gallery 2 Calling setScreenUp`);
         setScreenUp()
     }
 
@@ -268,7 +281,7 @@ function showImage(firstload) {
     photoImg2.onload = function() {
         const actualWidth2 = this.naturalWidth;
         const actualHeight2 = this.naturalHeight;
-        console.log(`Image 2 During onload check: ${actualWidth2}x${actualHeight2}`);
+        console.log(`Image 2 Portrait: ${actualWidth2<actualHeight2}`);
         updatePictureDetails(2, photoImg2.src, actualWidth2<actualHeight2);
         console.log(`Image 2 Safely loaded: ${actualWidth2}x${actualHeight2}`);
     }
@@ -277,6 +290,7 @@ function showImage(firstload) {
     photoImg3.onload = function() {
         const actualWidth3 = this.naturalWidth;
         const actualHeight3 = this.naturalHeight;
+        console.log(`Image 3 Portrait: ${actualWidth3<actualHeight3}`);
         updatePictureDetails(3, photoImg3.src, actualWidth3<actualHeight3);
         console.log(`Image 3 Safely loaded: ${actualWidth3}x${actualHeight3}`);
     }
@@ -285,6 +299,7 @@ function showImage(firstload) {
     photoImg4.onload = function() {
         const actualWidth4 = this.naturalWidth;
         const actualHeight4 = this.naturalHeight;
+        console.log(`Image 4 Portrait: ${actualWidth4<actualHeight4}`);
         updatePictureDetails(4, photoImg4.src, actualWidth4<actualHeight4);
         console.log(`Image 4 Safely loaded: ${actualWidth4}x${actualHeight4}`);
     }
@@ -293,6 +308,7 @@ function showImage(firstload) {
     photoImg5.onload = function() {
         const actualWidth5 = this.naturalWidth;
         const actualHeight5 = this.naturalHeight;
+        console.log(`Image 5 Portrait: ${actualWidth5<actualHeight5}`);
         updatePictureDetails(5, photoImg5.src, actualWidth5<actualHeight5);
         console.log(`Image 5 Safely loaded: ${actualWidth5}x${actualHeight5}`);
     }
@@ -301,6 +317,7 @@ function showImage(firstload) {
     photoImg6.onload = function() {
         const actualWidth6 = this.naturalWidth;
         const actualHeight6 = this.naturalHeight;
+        console.log(`Image 6 Portrait: ${actualWidth6<actualHeight6}`);
         updatePictureDetails(6, photoImg6.src, actualWidth6<actualHeight6);
         console.log(`Image 6 Safely loaded: ${actualWidth6}x${actualHeight6}`);
     }
@@ -309,6 +326,7 @@ function showImage(firstload) {
     photoImg7.onload = function() {
         const actualWidth7 = this.naturalWidth;
         const actualHeight7 = this.naturalHeight;
+        console.log(`Image 7 Portrait: ${actualWidth7<actualHeight7}`);
         updatePictureDetails(7, photoImg7.src, actualWidth7<actualHeight7);
         console.log(`Image 7 Safely loaded: ${actualWidth7}x${actualHeight7}`);
     }
@@ -317,6 +335,7 @@ function showImage(firstload) {
     photoImg8.onload = function() {
         const actualWidth8 = this.naturalWidth;
         const actualHeight8 = this.naturalHeight;
+        console.log(`Image 8 Portrait: ${actualWidth8<actualHeight8}`);
         updatePictureDetails(8, photoImg8.src, actualWidth8<actualHeight8);
         console.log(`Image 8 Safely loaded: ${actualWidth8}x${actualHeight8}`);
     }
@@ -325,6 +344,7 @@ function showImage(firstload) {
     photoImg9.onload = function() {
         const actualWidth9 = this.naturalWidth;
         const actualHeight9 = this.naturalHeight;
+        console.log(`Image 9 Portrait: ${actualWidth9<actualHeight9}`);
         updatePictureDetails(9, photoImg9.src, actualWidth9<actualHeight9);
         console.log(`Image 9 Safely loaded: ${actualWidth9}x${actualHeight9}`);
     }
@@ -333,6 +353,7 @@ function showImage(firstload) {
     photoImg10.onload = function() {
         const actualWidth10 = this.naturalWidth;
         const actualHeight10 = this.naturalHeight;
+        console.log(`Image 10 Portrait: ${actualWidth10<actualHeight10}`);
         updatePictureDetails(10, photoImg10.src, actualWidth10<actualHeight10);
         console.log(`Image 10 Safely loaded: ${actualWidth10}x${actualHeight10}`);
     }
@@ -341,6 +362,7 @@ function showImage(firstload) {
     photoImg11.onload = function() {
         const actualWidth11 = this.naturalWidth;
         const actualHeight11 = this.naturalHeight;
+        console.log(`Image 11 Portrait: ${actualWidth11<actualHeight11}`);
         updatePictureDetails(11, photoImg11.src, actualWidth11<actualHeight11);
         console.log(`Image 11 Safely loaded: ${actualWidth11}x${actualHeight11}`);
     }
@@ -349,21 +371,23 @@ function showImage(firstload) {
     photoImg12.onload = function() {
         const actualWidth12 = this.naturalWidth;
         const actualHeight12 = this.naturalHeight;
+        console.log(`Image 12 Portrait: ${actualWidth12<actualHeight12}`);
         updatePictureDetails(12, photoImg12.src, actualWidth12<actualHeight12);
         console.log(`Image 12 Safely loaded: ${actualWidth12}x${actualHeight12}`);
     }
 
     // Load an extra picture that is not displayed to ensure getting the right dimensions.
     photoImg13.onload = function() {
-        console.log(`Image 13 URL: ${photoImg13.src}`);
+        console.log(`New Load Image 13 URL: ${photoImg13.src}`);
         const actualWidth13 = this.naturalWidth;
         const actualHeight13 = this.naturalHeight;
         if (actualWidth13 < actualHeight13) {pic13OrientationPortrait = true} else {pic13OrientationPortrait = false};
         updatePictureDetails(13, photoImg13.src, actualWidth13<actualHeight13);
         const openGalleryButton = document.querySelector('.open-gallery');
         openGalleryButton.disabled = false; 
-        console.log('Button Enabled');
+        console.log(`****New Load Image 13 Portrait: ${actualWidth13<actualHeight13}`);
         console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
+        console.log('Button Enabled');
     }
     currentPictureIndex = (currentPictureIndex + 1) % images.length;
     setCurrentPictureIndex(currentPictureIndex);
@@ -397,6 +421,7 @@ function showImage(firstload) {
     console.log(`Grid Box Count: ${(gridBoxCount)}`);
 
     updateFilterBadges();
+
 }
 
 //When users click on "sandwich icon", open or show the curtain menu layer
