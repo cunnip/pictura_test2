@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="aboutUs">
+<body class="joinUs">
 
     <!--Navigation Section-->
 <!--Add Sandwich Icon-->                            
@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="mainContainer ">
+    <div class="mainContainer">
         <main class="mainContent allowScrollBar" id="customize-div">
             <div class="noSound backGroundColourMenu">
                 <label for="colorOption">Background&nbsp;color: </label>
@@ -66,37 +66,27 @@
             </div>
             <br>
 
-            <h3> ABOUT US </h3>
-            <button id="ttsButton" class="tts-button" tabindex="2">Start Reading</button>
+            <h3> JOIN US PAGE</h3>
+            <div class="box member">
             <br>
-            <p class="isLocked">
-            Welcome to our photography website, we are passionate photographers who believe in the power of sharing knowledge to inspire others.
-            </p>
+            <h1>Become a member today:<br></h1>
             <br>
-            The goal is to create a space where amateur photographers can learn, grow, and connect in a supportive environment.
-            </p>
+            </div>
             <br>
-            <p class="isLocked">
-            This website is a place for you to showcase your photos, receive feedback via a member photo rating system, and to be inspired by other peoples photos, we are building a community on a foundation of respect and honesty and we expect everyone to be polite and thoughtful.
-            </p>
+            <div class="signUpUserInfo">
+                <br>
+                <label>Email: </label><input type="text" id="signupemail" name="signupemail" placeholder="Your Name" required><br>
+                <label>Password: </label><input type="password" id="signuppassword" name="signuppassword" placeholder="Your Password" required><br>
+                <br>
+                <label>Allow Comments: </label><input type="checkbox" id="allowComments" name="allowComments" checked><br>
+                <br>
+            </div>
             <br>
-            <p class="isLocked">
-            We ask that all photos uploaded are your own original work.
-            </p>
+            <a class="box signUpButton" id="signUpButton">Sign Up</a>  <!--This is the sign up button - Text Set with JScript-->
             <br>
-            <p class="isLocked">
-            Whether you're just starting out or have been taking photos for a while, we invite you to join us, share your work, see what others are creating, and let's help each other become better photographers.
-            </p>
-            <br>
-            <p class="isLocked">To join our newsletter, click the news letter button and leave your email address, our newsletter is published yearly and will be emailed to you.
-            </p>
-            <br>
-            <p class="isLocked">If you would like assistance, click on the Assistance button, leave your phone number and we will contact you.
-            </p>
-            <br>
-            <br>
-            <a class="box privacyLink half-disabled-link" href="privacyInfo.html" tabindex="10">Privacy</a>
-            <br>
+            <br>    
+            <br>    
+            <br>    
             <p1 class="findUs">Find us in Pirimai, Napier 4112</p1>
             <br>
             <br>
@@ -106,18 +96,19 @@
         <!--Side Bar--> 
         <aside class="sidebar">
             <div class="outer-container">
-                <div class="grid-container">
+                <div class="grid-container joinUs"> <!--Had to set joinUs here as well, not sure why I had to. It is used in the CSS file to move the Home button down.-->
                     <p id="loginText" class="loginText"></p> <!--This stores the Logged In / Logged Out Text - Text Set with JScipt' -->
                     <input text="username" title="username" type="text" id="loginname" placeholder="Login Name" class="login-name-box" tabindex="3">
                     <input text="password" title="password" type="password" id="password" placeholder="Password" class="password-box" tabindex="4">
                     <a class="box login-box" onclick="loginUser()" tabindex="5"></a>  <!--This is the login button - Text Set with JScript-->
                     <a class="box open-gallery" id="opengallery" href="gallery.html" tabindex="6">Open<br>Gallery</a>
+                    <a class="box about-box half-disabled-link" href="aboutUs.html" tabindex="6">About Us</a>
                     <a class="box home-box" href="index.html" tabindex="7">Home</a>
                     <a class="box join-box half-disabled-link" id="signUpButton2" href="joinUs.html" tabindex="7">Join Us</a>
-                    <a class="box upload-box half-disabled-link" href="upLoad.html" tabindex="9">Upload</a>
+                    <a class="box upload-box" href="upLoad.html" tabindex="8">Upload</a>
                 </div>
             </div>
-        </aside>
+        </aside> 
         <!--Footer Bar-->
         <main class="footer-bar isLocked">
             <p>A website for picture enthusiasts<br>Created by Peter Cunningham</p>
@@ -127,68 +118,24 @@
     <!--Curtain Menu Layer-->
     <!--script src="googleTranslate.js"></script>-->
 
+
     <script src="auth.js" type="module"></script>
-    <script src="textToSpeech.js"></script>
     <script src="userControl.js"></script>
     <script src="screenSetup.js"></script>    
-    <script src="aboutUs.js"> </script> 
+    <script src="joinUs.js"> </script> 
 
     <script src="googleTranslate.js"></script>    
 
+
 <script type="text/javascript">
 
-    function googleTranslateElementInit() 
-    {
-        new google.translate.TranslateElement({
-            pageLanguage: 'en',
-            includedLanguages: 'en,mi,de,es,fr,it,ja,ko,pt,zh-CN', 
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false
-        }, 'google_translate_element');
-        
-        // Monitor for translation changes
-        setTimeout(function() {
-            monitorTranslation();
-        }, 1500);
-    }
-
-    hideGoogleTranslateBanner();
-
-    var checkCount = 0;
-    var bannerChecker = setInterval(function() 
-    {
-        hideGoogleTranslateBanner();
-        checkCount++;
-        if (checkCount > 100) { // Extended to 10 seconds
-            clearInterval(bannerChecker);
-        }
-    }, 100);
-
-    window.addEventListener('load', function() 
-    {
-        hideGoogleTranslateBanner();
-        setTimeout(monitorTranslation, 2000);
-    });
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', hideGoogleTranslateBanner);
-    } else {
-        hideGoogleTranslateBanner();
-    }
-
-    // Function to dynamically load the external Google Translate script
-    function loadGoogleTranslateScript() {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        // Use the original source with the callback
-        script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=auto';
-        document.body.appendChild(script);
-    }
-
-    // Defer the script loading until the entire page (DOM, images, CSS) is fully loaded
-    // ADD GOOGLE TRANSLATOR AS THE LAST THING TO LOAD
-    window.addEventListener('load', loadGoogleTranslateScript);
 
 </script>
+
+<!-- THIS LOADED VERY SLOWLY SO MOVED TO ABOVE
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+-->
+
 </body>
+
 </html>

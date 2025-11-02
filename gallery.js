@@ -206,10 +206,6 @@ function showImage(firstload) {
                                 console.log('Button Enabled');
                                 console.log(`Image 13 Safely loaded: ${actualWidth13}x${actualHeight13}`);
                                 setScreenUp()
-                                if (typeof updateFilterBadges === 'function') {
-                                    updateFilterBadges();
-                                }
-
                             }
                         return
                     }

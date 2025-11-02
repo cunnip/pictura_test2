@@ -861,7 +861,7 @@ nav {
 
         /* Specific styles for the colored boxes */
         .home-box, .about-box, .join-box, .upload-box, .my-Photos, .all-Photos, .category-Photos, .rated-Photos, .pic13state, .login-box, .open-gallery {
-            font-size: large%;
+            font-size: large;
             min-width: 60px;
             text-decoration: none;
             align-content: center;
