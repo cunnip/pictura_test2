@@ -2,6 +2,8 @@ function setScreenUp()
 {
 
     console.log(`*************Running setScreenUp**************`);
+    const pageURL = window.location.href;
+    console.log("The calling page URL is: " + pageURL);
 
     //const AR15_9 = window.matchMedia('(min-aspect-ratio: 15/9)');
     //console.log(`SavedScreenData: ${(AR15_9)}`);

@@ -1,4 +1,4 @@
-const isProduction = false; 
+const isProduction = true; 
 
 if (isProduction) {
     // Override the console methods to be empty functions (No operation - NOOP)
