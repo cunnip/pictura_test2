@@ -1,4 +1,4 @@
-const isProduction = false; 
+const isProduction = true; 
 
 if (isProduction) {
     // Override the console methods to be empty functions (No operation - NOOP)
@@ -103,4 +103,5 @@ function preventLinkClick(event)
             statusMessage.textContent = `${itemId} is UNLOCKED and will navigate.`;
         }
     }
+
 }
